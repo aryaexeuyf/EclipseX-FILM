@@ -279,8 +279,10 @@ html{scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
 }
 .section-head:first-of-type{margin-top:0;}
 .section-idx{font-family:var(--font-mono);font-size:11px;color:var(--subtle);}
-.section-title{font-family:var(--font-display);font-size:24px;letter-spacing:.03em;color:var(--fg);}
-.section-sub{font-family:var(--font-mono);font-size:10.5px;color:var(--subtle);}
+.section-title{font-family:var(--font-display);font-size:24px;letter-spacing:.03em;color:var(--fg);line-height:1.25;padding-bottom:2px;}
+.section-sub{font-family:var(--font-mono);font-size:10.5px;color:var(--subtle);line-height:1.4;}
+.section-h2{line-height:1.25;padding-bottom:2px;}
+h1,h2,h3{line-height:1.25;}
 
 /* ─── Hero Carousel ─── */
 .hero{
@@ -291,8 +293,8 @@ html{scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
 }
 @media(min-width:768px){.hero{min-height:490px;margin-top:20px;}}
 .hero-slides{position:absolute;inset:0;display:flex;transition:none;}
-.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .55s var(--ease-out);}
-.hero-slide.active{opacity:1;}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .55s var(--ease-out);pointer-events:none;z-index:0;}
+.hero-slide.active{opacity:1;pointer-events:auto;z-index:1;}
 .hero-bg{
   position:absolute;inset:0;background-size:cover;background-position:center 20%;
   transition:transform .7s var(--ease-out);
@@ -493,18 +495,19 @@ html{scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
   background:linear-gradient(rgba(7,7,10,.25) 0%,rgba(7,7,10,.65) 40%,rgba(7,7,10,.95) 75%,var(--bg) 100%);
 }
 .detail-poster{
-  width:100px;flex-shrink:0;border-radius:var(--radius-sm);
-  overflow:hidden;box-shadow:var(--shadow-elev);aspect-ratio:2/3;
+  width:110px;flex-shrink:0;border-radius:var(--radius-sm);
+  overflow:hidden;box-shadow:var(--shadow-elev);
+  aspect-ratio:2/3;height:auto;
 }
 @media(min-width:768px){.detail-poster{width:130px;}}
-.detail-poster img{width:100%;height:100%;object-fit:cover;}
+.detail-poster img{width:100%;height:100%;object-fit:cover;display:block;}
 .detail-main{padding:0 16px 40px;}
-.detail-top{display:flex;gap:14px;margin-top:-55px;position:relative;}
-.detail-info{padding-top:8px;min-width:0;}
-@media(min-width:768px){.detail-top{margin-top:-40px;}.detail-info{padding-top:48px;}}
+.detail-top{display:flex;gap:14px;margin-top:-48px;position:relative;align-items:flex-end;}
+.detail-info{padding-top:6px;min-width:0;flex:1;}
+@media(min-width:768px){.detail-top{margin-top:-40px;align-items:flex-start;}.detail-info{padding-top:48px;}}
 .detail-title{
   font-family:var(--font-display);font-size:clamp(1.5rem,5vw,2.6rem);
-  line-height:1;font-weight:700;letter-spacing:-.01em;
+  line-height:1.15;font-weight:700;letter-spacing:-.01em;padding-bottom:2px;
 }
 .detail-meta{
   display:flex;flex-wrap:wrap;gap:12px;margin-top:10px;
@@ -1161,7 +1164,7 @@ html{scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
       <div class="dev-card" style="margin-top:14px;">
         <div class="dev-title">Share with your friends</div>
         <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;">Ajak teman nonton film & series gratis di EclipseX Film. Bagikan link via WhatsApp — preview gambar otomatis muncul dari situs.</p>
-        <a class="wa-link" href="https://wa.me/?text=%F0%9F%8E%AC%20*ECLIPSEX%20FILM*%20%E2%80%94%20Streaming%20Film%20%26%20Series%20Gratis!%0A%0A%E2%9C%A8%20Film%20segera%20tayang%2C%20terbaru%2C%20top%20rated%20%26%20populer%0A%E2%9C%A8%20Banyak%20server%20pilihan%20%28EFS-01%20%2F%20EXM-02%20%2F%20EX-03%20%2F%20Nexus-04%29%0A%E2%9C%A8%20UI%20modern%20%2B%20bisa%20diinstall%20sebagai%20aplikasi%0A%E2%9C%A8%20Gratis%20selamanya%0A%0A%F0%9F%91%89%20Buka%20sekarang%3A%0Ahttps%3A%2F%2Faryaexeuyf.github.io%2FEclipseX-FILM%2F" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 18px;font-size:13.5px;">
+        <a class="wa-link" href="https://wa.me/?text=%F0%9F%8E%AC%20*ECLIPSEX%20FILM*%20%E2%80%94%20Streaming%20Film%20%26%20Series%20Gratis!%0A%0A%E2%9C%A8%20Film%20segera%20tayang%2C%20terbaru%2C%20top%20rated%20%26%20populer%0A%E2%9C%A8%20Banyak%20server%20pilihan%20%28EFS-01%20%2F%20EXM-02%20%2F%20EX-03%20%2F%20Nexus-04%29%0A%E2%9C%A8%20UI%20modern%20%2B%20bisa%20diinstall%20sebagai%20aplikasi%0A%E2%9C%A8%20Gratis%20selamanya%0A%0A%F0%9F%91%89%20Buka%20sekarang%3A%0Ahttps%3A%2F%2Fspoo.me%2FEclipseXFilm" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 18px;font-size:13.5px;">
           <svg viewBox="0 0 24 24" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.002 0C4.916 0 0 4.916 0 11.002c0 1.98.525 3.83 1.437 5.437L0 22.002l5.72-1.418A10.934 10.934 0 0011.002 22c6.086 0 11.002-4.916 11.002-11.002S17.088 0 11.002 0zm.001 20.091a9.08 9.08 0 01-4.627-1.265l-.331-.197-3.395.842.876-3.307-.218-.343a9.08 9.08 0 01-1.393-4.821c0-5.023 4.067-9.09 9.088-9.09s9.088 4.067 9.088 9.09-4.067 9.091-9.088 9.091z" fill-rule="evenodd"/></svg>
           Bagikan ke WhatsApp
         </a>
@@ -1288,7 +1291,7 @@ const ORIGIN_UPSTREAMS=[
   'https://zaammoviesnr.netlify.app/api/movies'
 ];
 const TMDB_IMG='https://image.tmdb.org/t/p/w185';
-const ROTATE_MS=6500;
+const ROTATE_MS=6000;
 
 const PLACEHOLDER=`data:image/svg+xml;utf8,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450"><rect width="300" height="450" fill="#111116"/><circle cx="150" cy="200" r="46" fill="none" stroke="#3a3a42" stroke-width="3"/><circle cx="150" cy="200" r="28" fill="#07070a"/><text x="50%" y="78%" fill="#5c5c66" font-family="sans-serif" font-size="13" text-anchor="middle">ECLIPSEX</text></svg>')}`;
 const PLACEHOLDER_AV=`data:image/svg+xml;utf8,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><rect width="120" height="120" fill="#1a1a20"/><circle cx="60" cy="46" r="22" fill="#4a4a54"/><path d="M20 108c4-26 26-40 40-40s36 14 40 40" fill="#4a4a54"/></svg>')}`;
@@ -1454,6 +1457,7 @@ let filmCache={};
 let heroFilms=[];
 let heroIdx=0;
 let heroTimer=null;
+let heroAutoResumeTimer=null;
 let heroTouchStartX=0;
 let heroTouchStartY=0;
 let rekoFilms=[];
@@ -1485,6 +1489,11 @@ function markSplashReady(){splashDone=true;tryDismissSplash();}
 // ============================================================
 function navigate(page,pushPrev=true){
   if(page===currentPage&&!['detail','watch'].includes(page))return;
+
+  // If leaving the watch page → mark that install prompt may be shown next time on home
+  if(currentPage==='watch' && page!=='watch' && !isPwaInstalled()){
+    setInstallAfterWatchFlag();
+  }
   
   // store previous for back
   if(pushPrev&&!['detail','watch'].includes(page)){
@@ -1515,9 +1524,12 @@ function navigate(page,pushPrev=true){
   if(page==='reko'&&!rekoFilms.length)loadReko();
   if(page==='search')setTimeout(()=>document.getElementById('mobile-search')?.focus(),120);
   if(page==='info')setTimeout(updateDefaultServerUI,80);
-  if(page==='home'&&!isPwaInstalled()){
-    const banner=document.getElementById('pwa-banner');
-    if(banner)banner.style.display='flex';
+
+  // Install popup: only when returning to home AFTER finishing a watch session
+  if(page==='home' && !isPwaInstalled() && shouldShowInstallAfterWatch()){
+    clearInstallAfterWatchFlag();
+    // subtle delay so transition feels natural
+    setTimeout(()=>{ maybeShowPwaPrompt(); }, 900);
   }
 }
 
@@ -1648,9 +1660,7 @@ function renderHero(films){
       if(dx<0)nextHeroSlide();
       else prevHeroSlide();
     }
-    // Pause 6s then resume auto
-    clearTimeout(heroAutoResumeTimer);
-    heroAutoResumeTimer=setTimeout(()=>startHeroAuto(),6000);
+    pauseHeroThenResume();
   },{passive:true});
 
   // Mouse drag for desktop
@@ -1662,13 +1672,10 @@ function renderHero(films){
       if(Math.abs(dx)>50){dx<0?nextHeroSlide():prevHeroSlide();}
     }
     mouseDown=false;
-    clearTimeout(heroAutoResumeTimer);
-    heroAutoResumeTimer=setTimeout(()=>startHeroAuto(),6000);
+    pauseHeroThenResume();
   });
   hero.addEventListener('mouseleave',()=>{
-    if(mouseDown){mouseDown=false;}
-    clearTimeout(heroAutoResumeTimer);
-    heroAutoResumeTimer=setTimeout(()=>startHeroAuto(),6000);
+    if(mouseDown){mouseDown=false;pauseHeroThenResume();}
   });
 
   startHeroAuto();
@@ -1686,22 +1693,23 @@ function updateHeroUI(){
 function goHeroSlide(idx){
   heroIdx=idx;
   updateHeroUI();
-  stopHeroAuto();
-  clearTimeout(heroAutoResumeTimer);
-  heroAutoResumeTimer=setTimeout(()=>startHeroAuto(),6000);
+  pauseHeroThenResume();
 }
 
 function nextHeroSlide(){
   heroIdx=(heroIdx+1)%heroFilms.length;
   updateHeroUI();
+  pauseHeroThenResume();
 }
 
 function prevHeroSlide(){
   heroIdx=(heroIdx-1+heroFilms.length)%heroFilms.length;
   updateHeroUI();
+  pauseHeroThenResume();
 }
 
 function startHeroAuto(){
+  stopHeroAuto();
   if(heroFilms.length<2)return;
   heroTimer=setInterval(()=>{
     heroIdx=(heroIdx+1)%heroFilms.length;
@@ -1709,8 +1717,15 @@ function startHeroAuto(){
   },ROTATE_MS);
 }
 
-function stopHeroAuto(){clearInterval(heroTimer);}
+function stopHeroAuto(){
+  if(heroTimer){clearInterval(heroTimer);heroTimer=null;}
+}
 function resetHeroAuto(){stopHeroAuto();startHeroAuto();}
+function pauseHeroThenResume(){
+  stopHeroAuto();
+  clearTimeout(heroAutoResumeTimer);
+  heroAutoResumeTimer=setTimeout(()=>startHeroAuto(),6000);
+}
 
 // ============================================================
 // POSTER CARD HTML
@@ -1959,6 +1974,7 @@ async function openWatch(slug){
     return;
   }
   addHistory(film);
+  markWatchedFilm(); // mark so install popup can appear later on home
   currentWatchFilm=film;
   currentSeason=1;currentEpisode=1;
   renderWatch(film);
@@ -2099,24 +2115,45 @@ function clearHistory(){
 // PWA INSTALL — real Chrome prompt, no manual steps
 // ============================================================
 let _pwaPrompt=null;
-const PWA_SHEET_SHOWN_KEY='eclipsex_pwa_sheet_shown';
+const HAS_WATCHED_KEY='eclipsex_has_watched';
+const WELCOME_APP_KEY='eclipsex_welcome_app_shown';
 
 window.addEventListener('beforeinstallprompt',(e)=>{
   e.preventDefault();
   _pwaPrompt=e;
-  // Show banner on home page
-  const banner=document.getElementById('pwa-banner');
-  if(banner&&!isPwaInstalled())banner.style.display='flex';
+  // Soft banner only after user has watched at least one film
+  if(!isPwaInstalled() && hasWatchedFilm()){
+    const banner=document.getElementById('pwa-banner');
+    if(banner)banner.style.display='flex';
+  }
 });
 window.addEventListener('appinstalled',()=>{
   _pwaPrompt=null;
   hidePwaElements();
   showToast('EclipseX Film berhasil diinstall!');
-  try{sessionStorage.setItem(PWA_SHEET_SHOWN_KEY,'1');}catch{}
+  // Mark so welcome popup can show on next open of installed app
+  try{localStorage.setItem(WELCOME_APP_KEY,'pending');}catch{}
 });
 
 function isPwaInstalled(){
   return window.matchMedia('(display-mode:standalone)').matches||window.navigator.standalone===true||document.referrer.includes('android-app://');
+}
+function hasWatchedFilm(){
+  try{return localStorage.getItem(HAS_WATCHED_KEY)==='1';}catch{return false;}
+}
+function markWatchedFilm(){
+  try{localStorage.setItem(HAS_WATCHED_KEY,'1');}catch{}
+}
+// Session flag: only prompt install right after user finishes watching
+const INSTALL_AFTER_WATCH_KEY='eclipsex_install_after_watch';
+function setInstallAfterWatchFlag(){
+  try{sessionStorage.setItem(INSTALL_AFTER_WATCH_KEY,'1');}catch{}
+}
+function shouldShowInstallAfterWatch(){
+  try{return sessionStorage.getItem(INSTALL_AFTER_WATCH_KEY)==='1';}catch{return false;}
+}
+function clearInstallAfterWatchFlag(){
+  try{sessionStorage.removeItem(INSTALL_AFTER_WATCH_KEY);}catch{}
 }
 function hidePwaElements(){
   const b=document.getElementById('pwa-banner');if(b)b.style.display='none';
@@ -2125,10 +2162,11 @@ function hidePwaElements(){
 }
 
 function openPwaSheet(){
-  if(isPwaInstalled()){showToast('Aplikasi sudah terinstall!');return;}
+  // Never show install prompt inside installed APK / standalone
+  if(isPwaInstalled()){return;}
   const area=document.getElementById('pwa-btn-area');
-  if(area&&isPwaInstalled()){
-    area.innerHTML='<div class="pwa-installed-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Sudah terinstall!</div>';
+  if(area){
+    // reset to default button if needed
   }
   document.getElementById('pwa-sheet').classList.add('open');
   document.body.style.overflow='hidden';
@@ -2136,11 +2174,10 @@ function openPwaSheet(){
 function closePwaSheet(){
   document.getElementById('pwa-sheet').classList.remove('open');
   document.body.style.overflow='';
-  try{sessionStorage.setItem(PWA_SHEET_SHOWN_KEY,'1');}catch{}
 }
 async function triggerPwaInstall(){
+  if(isPwaInstalled()){closePwaSheet();return;}
   if(_pwaPrompt){
-    // Real Chrome PWA install prompt — native popup
     _pwaPrompt.prompt();
     const{outcome}=await _pwaPrompt.userChoice;
     if(outcome==='accepted'){
@@ -2148,11 +2185,7 @@ async function triggerPwaInstall(){
       closePwaSheet();
       hidePwaElements();
     }
-  }else if(isPwaInstalled()){
-    closePwaSheet();
-    showToast('Aplikasi sudah terinstall!');
   }else{
-    // Guidance if browser not ready for native prompt
     const area=document.getElementById('pwa-btn-area');
     if(area){
       area.innerHTML=`
@@ -2168,20 +2201,125 @@ async function triggerPwaInstall(){
   }
 }
 
-// Show download popup on home if not installed (once per session)
+// Show install popup (sheet) — called only right after user finishes watching
 function maybeShowPwaPrompt(){
   if(isPwaInstalled()){
     hidePwaElements();
     return;
   }
-  const banner=document.getElementById('pwa-banner');
-  if(banner)banner.style.display='flex';
-  // Auto open sheet once per browser session if not installed
+  // Soft banner can appear after user has watched at least once
+  if(hasWatchedFilm()){
+    const banner=document.getElementById('pwa-banner');
+    if(banner)banner.style.display='flex';
+  }
+  // Open the full popup sheet only when triggered after watch
+  if(!isPwaInstalled()){
+    openPwaSheet();
+  }
+}
+
+// Welcome popup after install (shown once inside the installed app)
+function maybeShowWelcomeApp(){
+  if(!isPwaInstalled())return;
   try{
-    if(!sessionStorage.getItem(PWA_SHEET_SHOWN_KEY)){
-      setTimeout(()=>{ if(!isPwaInstalled()) openPwaSheet(); }, 2800);
+    const flag=localStorage.getItem(WELCOME_APP_KEY);
+    if(flag==='pending' || flag===null){
+      // Show custom thank-you popup
+      showWelcomeAppPopup();
+      localStorage.setItem(WELCOME_APP_KEY,'shown');
     }
   }catch{}
+}
+
+function showWelcomeAppPopup(){
+  // Create styled modal matching web design
+  if(document.getElementById('welcome-app-modal'))return;
+  const modal=document.createElement('div');
+  modal.id='welcome-app-modal';
+  modal.style.cssText='position:fixed;inset:0;z-index:9500;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);';
+  modal.innerHTML=`
+  <div style="background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:28px 24px;max-width:360px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);animation:.35s var(--ease-spring) both modalIn;">
+    <div style="font-size:42px;margin-bottom:12px;">🎬✨</div>
+    <h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--fg);margin-bottom:8px;">Terima kasih!</h2>
+    <p style="font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:18px;">
+      Selamat menikmati <strong style="color:var(--fg)">EclipseX Film</strong>.<br/>
+      Aplikasi streaming film & series gratis sudah siap dipakai.
+    </p>
+    <div style="display:grid;gap:8px;margin-bottom:20px;text-align:left;">
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--border);font-size:12.5px;color:var(--muted);">
+        <span style="color:var(--ember);">▶</span> Banyak server (EFS-01 · EXM-02 · EX-03 · Nexus-04)
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--border);font-size:12.5px;color:var(--muted);">
+        <span style="color:var(--ember);">★</span> Upcoming, Latest, Top Rated & Populer
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--border);font-size:12.5px;color:var(--muted);">
+        <span style="color:var(--ember);">♥</span> Nikmati full tanpa khawatir · Gratis selamanya
+      </div>
+    </div>
+    <button onclick="document.getElementById('welcome-app-modal').remove();document.body.style.overflow='';" style="width:100%;padding:13px;border-radius:12px;background:var(--ember);color:#fff;font-size:14px;font-weight:700;border:0;cursor:pointer;">
+      Mulai Nonton
+    </button>
+  </div>`;
+  document.body.appendChild(modal);
+  document.body.style.overflow='hidden';
+}
+
+// ============================================================
+// OFFLINE SUPPORT
+// ============================================================
+function setupOfflineHandling(){
+  window.addEventListener('online',()=>{
+    // Auto recover when connection returns
+    hideOfflineUI();
+    if(currentPage==='home'||!document.getElementById('page-home').classList.contains('active')){
+      // soft reload data
+      loadHomeData();
+    }
+    showToast('Koneksi kembali · memuat ulang data');
+  });
+  window.addEventListener('offline',()=>{
+    showOfflineUI();
+  });
+}
+
+function showOfflineUI(){
+  // Hide floating nav & sidebar actions feel
+  const nav=document.getElementById('bottom-nav');
+  if(nav)nav.style.display='none';
+  const scrolltop=document.getElementById('scrolltop');
+  if(scrolltop)scrolltop.style.display='none';
+  // Create / show offline overlay
+  let ov=document.getElementById('offline-overlay');
+  if(!ov){
+    ov=document.createElement('div');
+    ov.id='offline-overlay';
+    ov.style.cssText='position:fixed;inset:0;z-index:5000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center;';
+    ov.innerHTML=`
+      <div style="width:72px;height:72px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--subtle)" stroke-width="1.7"><path d="M1 1l22 22"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+      </div>
+      <h2 style="font-family:var(--font-display);font-size:22px;color:var(--fg);margin-bottom:10px;letter-spacing:.03em;">Tidak Ada Koneksi</h2>
+      <p style="font-size:14px;color:var(--muted);line-height:1.7;max-width:300px;margin-bottom:6px;">Hubungkan ke koneksi internet untuk menikmati film & series di EclipseX Film.</p>
+      <p style="font-size:12px;color:var(--subtle);margin-top:8px;">Aplikasi akan otomatis memuat ulang saat terhubung kembali.</p>
+    `;
+    document.body.appendChild(ov);
+  }
+  ov.style.display='flex';
+  // Keep splash hidden if already done
+  const splash=document.getElementById('splash');
+  if(splash)splash.classList.add('done');
+}
+
+function hideOfflineUI(){
+  const ov=document.getElementById('offline-overlay');
+  if(ov)ov.style.display='none';
+  const nav=document.getElementById('bottom-nav');
+  if(nav){
+    // restore only on mobile
+    if(window.innerWidth<768)nav.style.display='flex';
+  }
+  const scrolltop=document.getElementById('scrolltop');
+  if(scrolltop)scrolltop.style.display='';
 }
 
 // ============================================================
@@ -2207,15 +2345,28 @@ function updateDefaultServerUI(){
 // INIT
 // ============================================================
 function init(){
-  // Hide PWA elements if already installed
+  // Offline handling first
+  setupOfflineHandling();
+  // Welcome popup if opened as installed app
+  maybeShowWelcomeApp();
+  // Install UI rules:
+  // - Never show full popup on first open
+  // - Only soft banner if user already watched before (and not installed)
+  // - Full popup only after finishing a watch session (handled in navigate)
   if(isPwaInstalled()){
     hidePwaElements();
   }else{
-    // Show banner + optional sheet prompt
-    maybeShowPwaPrompt();
+    const banner=document.getElementById('pwa-banner');
+    if(banner){
+      banner.style.display = hasWatchedFilm() ? 'flex' : 'none';
+    }
   }
-  // Load home data
-  loadHomeData();
+  // Load home data (will be skipped / replaced if offline)
+  if(navigator.onLine){
+    loadHomeData();
+  }else{
+    showOfflineUI();
+  }
 }
 
 // Start
