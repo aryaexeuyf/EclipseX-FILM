@@ -1573,28 +1573,48 @@ async function fetchMoviesApi(action,params){
   if(action==='detail')path='/api/movies/detail/'+encodeURIComponent(params.slug||'');
   if(!path)throw new Error('Aksi tidak dikenal');
 
-  // A) Grok catalog only on app hosts (skip file:// & github.io — no proxy there)
-  const host=(typeof location!=='undefined'?location.hostname:'')||'';
-  const isStatic=!host||host.endsWith('github.io')||(typeof location!=='undefined'&&location.protocol==='file:');
-  if(!isStatic){
-    try{
-      const ctrl=new AbortController();
-      const timer=setTimeout(function(){ctrl.abort();},2000);
-      const r=await fetch('/api/catalog?path='+encodeURIComponent(path),{signal:ctrl.signal,headers:{Accept:'application/json'}});
-      clearTimeout(timer);
-      if(r.ok){
-        const j=await r.json();
-        if(j&&!j.error)return j;
-      }
-    }catch(e){}
+  // Moviezone real-time via Cloudflare Worker (hardcoded)
+  const WORKER='https://eclipsex-catalog.aryaputra-official25.workers.dev';
+  const proxies=[];
+  try{
+    const custom=localStorage.getItem('EX_CATALOG_PROXY');
+    if(custom)proxies.push(String(custom).replace(/\/$/,''));
+  }catch(e){}
+  proxies.push(WORKER);
+  // Grok / self-hosted (optional)
+  if(typeof location!=='undefined' && location.protocol!=='file:' && !(location.hostname||'').endsWith('github.io')){
+    proxies.push(''); // relative /api/catalog
   }
 
-  // B) TMDB — primary reliable source (CORS *)
-  if(action==='search')return await fetchTmdbSearch(params.q||'');
-  if(action==='detail')return await fetchTmdbDetail(params.slug||'');
-  return await fetchTmdbList(action==='hero'?'hero':action);
-}
+  let lastErr=null;
+  for(let i=0;i<proxies.length;i++){
+    const base=proxies[i];
+    const urls=[];
+    if(!base){
+      urls.push('/api/catalog?path='+encodeURIComponent(path));
+    }else{
+      urls.push(base+'/?path='+encodeURIComponent(path));
+      urls.push(base+'/api/catalog?path='+encodeURIComponent(path));
+      urls.push(base+'?path='+encodeURIComponent(path));
+    }
+    for(let u=0;u<urls.length;u++){
+      try{
+        const j=await fetchJson(urls[u], base?14000:4000);
+        if(j&&!j.error&&(j.results||j.data||Array.isArray(j)||j.ok!==undefined))return j;
+        if(j&&j.error)lastErr=new Error(j.error);
+      }catch(e){lastErr=e;}
+    }
+  }
 
+  // Fallback TMDB
+  try{
+    if(action==='search')return await fetchTmdbSearch(params.q||'');
+    if(action==='detail')return await fetchTmdbDetail(params.slug||'');
+    return await fetchTmdbList(action==='hero'?'hero':action);
+  }catch(e){
+    throw lastErr||e||new Error('Gagal memuat data film');
+  }
+}
 
 // ─── Normalize ─────────────────────────────────
 function pick(r,...keys){for(const k of keys){const v=r[k];if(v!==undefined&&v!==null&&v!=='')return v;}return undefined;}
@@ -1711,25 +1731,28 @@ function getServers(film,season,episode){
   const id=tmdbIdOf(film);
   const imdb=film&&film.imdbId;
   const s=season||1, e=episode||1;
-  if(!id&&!imdb)return film&&film.servers?film.servers:[];
   if(isSeries(film)&&id){
     return[
-      {name:'EFS-01',  url:'https://vidsrc.xyz/embed/tv?tmdb='+id+'&season='+s+'&episode='+e},
+      {name:'EFS-01',  url:'https://vidsrc.pm/embed/tv/'+id+'/'+s+'/'+e},
       {name:'EXM-02',  url:'https://multiembed.mov/?video_id='+id+'&tmdb=1&s='+s+'&e='+e},
       {name:'EX-03',   url:'https://vidsrc.to/embed/tv/'+id+'/'+s+'/'+e},
       {name:'CINE-04', url:'https://vidlink.pro/tv/'+id+'/'+s+'/'+e},
       {name:'XSTAR-05',url:'https://www.2embed.cc/embedtv/'+id+'&s='+s+'&e='+e},
-      {name:'Nexus-06',url:imdb?('https://vidsrc.xyz/embed/tv?imdb='+imdb+'&season='+s+'&episode='+e):('https://embed.su/embed/tv/'+id+'/'+s+'/'+e)},
+      {name:'Nexus-06',url:imdb
+        ?('https://vsembed.ru/embed/tv/'+imdb+'/'+s+'/'+e)
+        :('https://vidsrc.xyz/embed/tv?tmdb='+id+'&season='+s+'&episode='+e)},
     ];
   }
   if(id){
     return[
-      {name:'EFS-01',  url:'https://vidsrc.xyz/embed/movie?tmdb='+id},
+      {name:'EFS-01',  url:'https://vidsrc.pm/embed/movie/'+id},
       {name:'EXM-02',  url:'https://multiembed.mov/?video_id='+id+'&tmdb=1'},
       {name:'EX-03',   url:'https://vidsrc.to/embed/movie/'+id},
       {name:'CINE-04', url:'https://vidlink.pro/movie/'+id},
       {name:'XSTAR-05',url:'https://www.2embed.cc/embed/'+id},
-      {name:'Nexus-06',url:imdb?('https://vidsrc.xyz/embed/movie?imdb='+imdb):('https://embed.su/embed/movie/'+id)},
+      {name:'Nexus-06',url:imdb
+        ?('https://vsembed.ru/embed/movie/'+imdb)
+        :('https://vidsrc.xyz/embed/movie?tmdb='+id)},
     ];
   }
   return (film.servers||[]).map(function(sv,i){return{name:SERVER_LABELS[i]||sv.name,url:sv.url};});
@@ -2345,7 +2368,7 @@ function renderWatch(f){
     </div>
     <div class="player-wrap" id="player-wrap">
       ${activeUrl
-        ?`<iframe id="player-iframe" src="${esc(activeUrl)}" allowfullscreen allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="origin"></iframe>`
+        ?`<iframe id="player-iframe" src="${esc(activeUrl)}" allowfullscreen allow="autoplay; fullscreen; picture-in-picture; encrypted-media" referrerpolicy="no-referrer" loading="eager"></iframe>`
         :`<div class="player-msg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg><span>Server tidak tersedia saat ini.</span></div>`}
     </div>
     <div class="player-tools">
@@ -2416,7 +2439,7 @@ function switchServer(url,btn){
 function loadPlayer(url){
   const wrap=document.getElementById('player-wrap');if(!wrap)return;
   if(!url){wrap.innerHTML='<div class="player-msg"><span>Server tidak tersedia.</span></div>';applyPlayerChrome(wrap);return;}
-  wrap.innerHTML=`<iframe id="player-iframe" src="${esc(url)}" allowfullscreen allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="origin"></iframe>`;
+  wrap.innerHTML=`<iframe id="player-iframe" src="${esc(url)}" allowfullscreen allow="autoplay; fullscreen; picture-in-picture; encrypted-media" referrerpolicy="no-referrer" loading="eager"></iframe>`;
   applyPlayerChrome(wrap);
 }
 let lockChipTimer=null;
@@ -2895,19 +2918,21 @@ async function refreshLiveStatus(){
   const t0=performance.now();
   try{
     let ok=false, ms=0;
-    // Catalog ping only on non-static hosts (skip github.io / file)
+    // Ping Cloudflare Worker (moviezone) then others
+    const WORKER='https://eclipsex-catalog.aryaputra-official25.workers.dev';
+    const pingPaths=[
+      WORKER+'/?path='+encodeURIComponent('/__ping'),
+      WORKER+'?path='+encodeURIComponent('/__ping')
+    ];
+    try{
+      const custom=localStorage.getItem('EX_CATALOG_PROXY');
+      if(custom)pingPaths.unshift(String(custom).replace(/\/$/,'')+'/?path='+encodeURIComponent('/__ping'));
+    }catch(e){}
     const host=(typeof location!=='undefined'?location.hostname:'')||'';
-    const isStatic=!host||host==='localhost'||host.endsWith('github.io')||(typeof location!=='undefined'&&location.protocol==='file:');
-    if(!isStatic){
-      try{
-        const j=await fetchJson('/api/catalog?path='+encodeURIComponent('/__ping'),2000);
-        if(j&&(j.ok||j.ms!==undefined)){
-          ok=!!(j.ok!==false);
-          ms=typeof j.ms==='number'?j.ms:Math.round(performance.now()-t0);
-        }
-      }catch(e){}
-    }
-    // TMDB ping — same live source as film catalog
+    const isStatic=!host||host.endsWith('github.io')||(typeof location!=='undefined'&&location.protocol==='file:');
+    if(!isStatic)pingPaths.push('/api/catalog?path='+encodeURIComponent('/__ping'));
+
+    // Fallback TMDB
     if(!ok){
       const t1=performance.now();
       await fetchJson(TMDB_API+'/configuration?api_key='+TMDB_KEY,8000);
