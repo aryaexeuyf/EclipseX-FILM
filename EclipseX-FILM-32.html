@@ -1,0 +1,3457 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"/>
+<meta name="theme-color" content="#07070a"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="application-name" content="EclipseX Film"/>
+<meta name="apple-mobile-web-app-title" content="EclipseX Film"/>
+<link rel="manifest" href="manifest.webmanifest"/>
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/aryaexeuyf/Image/main/photo_2026-09-04_00-14-27.jpg"/>
+<link rel="icon" type="image/png" sizes="192x192" href="https://raw.githubusercontent.com/aryaexeuyf/Image/main/photo_2026-09-04_00-14-27.jpg"/>
+<link rel="icon" type="image/png" sizes="512x512" href="https://raw.githubusercontent.com/aryaexeuyf/Image/main/photo_2026-09-04_00-14-31.jpg"/>
+<title>EclipseX Film — Nonton Film & Series Sub Indo HD</title>
+<meta name="description" content="Nonton film dan series sub indo HD terbaru secara gratis. EclipseX Film by APTECH.ID"/>
+<link rel="preconnect" href="https://image.tmdb.org"/>
+<link rel="dns-prefetch" href="https://image.tmdb.org"/>
+<link rel="preconnect" href="https://api.themoviedb.org"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+
+/* ─── CSS Variables ─── */
+:root{
+  --bg:#07070a; --bg-soft:#0c0c11; --surface:#111116; --surface2:#18181f;
+  --fg:#f2f1ee; --muted:#9a9aa3; --subtle:#6b6b75; --border:#26262e;
+  --accent:#e8e4dc; --accent-fg:#0b0b0e; --ember:#e24b3a; --ember-soft:#e24b3a29;
+  --font-display:'Syne',sans-serif; --font-sans:'Figtree',sans-serif; --font-mono:'IBM Plex Mono',monospace;
+  --radius-sm:8px; --radius-md:12px; --radius-lg:16px; --radius-xl:24px;
+  --shadow-border:0 0 0 1px rgba(255,255,255,.08);
+  --shadow-elev:0 18px 50px rgba(0,0,0,.45);
+  --nav-h:68px; --header-h:60px;
+  --ease-spring:cubic-bezier(.22,1,.36,1);
+  --ease-out:cubic-bezier(0,0,.2,1);
+}
+
+/* ─── Reset & Base ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;border:0 solid;}
+html{-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;background:var(--bg);color:var(--fg);}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--fg);min-height:100dvh;overflow-x:hidden;line-height:1.5;}
+button,input,select,textarea{font:inherit;color:inherit;background:transparent;border:0;outline:none;-webkit-tap-highlight-color:transparent;}
+button:not(:disabled),[role=button]:not(:disabled){cursor:pointer;}
+a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent;}
+img{display:block;max-width:100%;height:auto;outline:1px solid rgba(255,255,255,.06);outline-offset:-1px;}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;}
+p{text-wrap:pretty;}
+*{-webkit-tap-highlight-color:transparent;}
+::selection{background:var(--accent);color:var(--accent-fg);}
+[hidden]{display:none!important;}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px;}
+html{scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+
+/* ─── Background ─── */
+.app-bg{
+  background:
+    radial-gradient(ellipse 80% 50% at 10% -10%,rgba(226,75,58,.08),transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 0%,rgba(232,228,220,.05),transparent 50%),
+    radial-gradient(ellipse 40% 60% at 50% 100%,rgba(226,75,58,.04),transparent 60%),
+    var(--bg);
+  min-height:100dvh;overflow-x:hidden;position:relative;
+}
+/* Dynamic ambient orbs */
+.app-bg::before,.app-bg::after{
+  content:'';position:fixed;border-radius:50%;pointer-events:none;z-index:0;
+  animation:orbFloat 18s ease-in-out infinite;
+}
+.app-bg::before{
+  width:600px;height:600px;top:-200px;left:-200px;
+  background:radial-gradient(circle,rgba(226,75,58,.04) 0%,transparent 70%);
+  animation-delay:0s;
+}
+.app-bg::after{
+  width:500px;height:500px;bottom:-150px;right:-150px;
+  background:radial-gradient(circle,rgba(232,228,220,.03) 0%,transparent 70%);
+  animation-delay:-9s;
+}
+@keyframes orbFloat{
+  0%,100%{transform:translate(0,0)scale(1);}
+  33%{transform:translate(30px,-20px)scale(1.05);}
+  66%{transform:translate(-20px,30px)scale(.95);}
+}
+
+/* ─── Splash Screen ─── */
+#splash{
+  position:fixed;inset:0;z-index:9999;
+  background:#050508;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:opacity .5s var(--ease-spring),visibility .5s;
+}
+#splash.done{opacity:0;visibility:hidden;pointer-events:none;}
+.eclipse{width:120px;height:120px;position:relative;margin-bottom:24px;}
+.eclipse-corona{
+  position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle,transparent 44%,rgba(232,228,220,.18) 50%,rgba(226,75,58,.55) 58%,transparent 72%);
+  animation:coronaPulse 2.4s ease-in-out infinite;
+}
+.eclipse-rim{
+  position:absolute;inset:14px;border-radius:50%;
+  border:1.5px solid rgba(232,228,220,.38);
+  animation:rimIn .9s var(--ease-spring) both;
+}
+.eclipse-disc{
+  position:absolute;inset:16px;border-radius:50%;
+  background:#050508;
+  box-shadow:0 0 0 1px rgba(232,228,220,.2),0 0 40px rgba(226,75,58,.25);
+  animation:discSettle 1.1s var(--ease-spring) both;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+/* EclipseX Logo inside disc */
+.eclipse-logo{
+  width:64px;height:64px;
+  display:flex;align-items:center;justify-content:center;
+  animation:logoFade .8s var(--ease-spring) .3s both;
+  border-radius:50%;
+  overflow:hidden;
+}
+.eclipse-logo img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+@keyframes coronaPulse{0%,100%{opacity:.85;transform:scale(1);}50%{opacity:1;transform:scale(1.07);}}
+@keyframes rimIn{0%{opacity:0;transform:scale(.6);}to{opacity:1;transform:none;}}
+@keyframes discSettle{0%{opacity:0;transform:translate(-8px,-5px)scale(.9);}to{opacity:1;transform:none;}}
+@keyframes logoFade{0%{opacity:0;transform:scale(.7);}to{opacity:1;transform:scale(1);}}
+.splash-brand{
+  font-family:var(--font-display);font-size:clamp(1.4rem,4vw,2rem);font-weight:800;
+  letter-spacing:.22em;color:var(--fg);
+  animation:.7s var(--ease-spring) .18s both riseIn;
+}
+.splash-brand span{color:var(--ember);}
+.splash-sub{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.28em;
+  color:var(--subtle);text-transform:uppercase;margin-top:7px;
+  animation:.7s var(--ease-spring) .35s both riseIn;
+}
+.splash-bar{
+  width:min(200px,55vw);height:2px;border-radius:99px;
+  background:rgba(255,255,255,.1);margin-top:26px;overflow:hidden;
+  animation:.7s var(--ease-spring) .48s both riseIn;
+}
+.splash-bar-fill{
+  height:100%;background:linear-gradient(90deg,var(--ember),var(--accent));
+  width:0%;animation:1.4s var(--ease-spring) .45s forwards splashLoad;
+}
+@keyframes splashLoad{to{width:100%;}}
+@keyframes riseIn{0%{opacity:0;filter:blur(4px);transform:translateY(10px);}to{opacity:1;filter:none;transform:none;}}
+
+/* ─── Top Bar ─── */
+#topbar{
+  position:fixed;top:0;left:0;right:0;height:2px;z-index:300;
+  background:linear-gradient(90deg,var(--ember),var(--accent));
+  transform:scaleX(0);transform-origin:left;
+  opacity:0;pointer-events:none;
+  transition:transform .4s var(--ease-out),opacity .3s;
+}
+#topbar.active{opacity:1;animation:topbarRun .8s var(--ease-spring) infinite;}
+@keyframes topbarRun{0%{opacity:.4;transform:scaleX(0);}60%{opacity:1;transform:scaleX(.7);}100%{opacity:0;transform:scaleX(1);}}
+
+/* ─── Header ─── */
+#header{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:var(--header-h);
+  display:flex;align-items:center;gap:12px;padding:0 16px;
+  background:rgba(7,7,10,.85);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.logo-link{display:flex;align-items:baseline;gap:6px;flex-shrink:0;}
+.logo-main{
+  font-family:var(--font-display);font-size:22px;font-weight:800;
+  letter-spacing:.14em;color:var(--fg);line-height:1;
+}
+.logo-main .x{color:var(--ember);}
+.logo-sub{
+  font-family:var(--font-display);font-size:22px;font-weight:600;
+  letter-spacing:.18em;color:var(--muted);line-height:1;
+}
+.search-form{
+  margin-left:auto;flex:1;max-width:340px;
+  display:none;align-items:center;gap:10px;
+  border-radius:99px;border:1px solid var(--border);
+  background:var(--surface);padding:9px 16px;
+  transition:border-color .2s;
+}
+.search-form:focus-within{border-color:rgba(232,228,220,.25);}
+@media(min-width:768px){.search-form{display:flex;}}
+.search-form input{
+  flex:1;width:100%;font-size:13.5px;color:var(--fg);background:none;
+}
+.search-form input::placeholder{color:var(--subtle);}
+.search-icon{width:16px;height:16px;flex-shrink:0;color:var(--muted);}
+
+/* ─── Layout ─── */
+#app{padding-top:var(--header-h);padding-bottom:calc(var(--nav-h) + 8px + env(safe-area-inset-bottom));}
+@media(min-width:768px){#app{padding-bottom:0;}}
+
+/* ─── Floating Liquid Glass Navbar ─── */
+#bottom-nav{
+  position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:200;
+  display:flex;align-items:center;
+  background:rgba(12,12,17,.72);
+  backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:28px;
+  padding:6px 8px;
+  gap:4px;
+  box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 0 .5px rgba(255,255,255,.06) inset,0 1px 0 rgba(255,255,255,.08) inset;
+  transition:bottom .3s var(--ease-spring);
+  /* Glass sheen */
+  overflow:hidden;
+}
+#bottom-nav::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+}
+@media(min-width:768px){#bottom-nav{display:none;}}
+.nav-pill{
+  position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:3px;padding:8px 16px;border-radius:22px;
+  font-family:var(--font-mono);font-size:9.5px;letter-spacing:.04em;
+  color:var(--muted);
+  transition:color .25s,background .25s,transform .15s var(--ease-spring);
+  min-width:54px;
+  -webkit-tap-highlight-color:transparent;
+}
+.nav-pill svg{width:20px;height:20px;stroke-width:1.6;transition:transform .25s var(--ease-spring);}
+.nav-pill.active{
+  color:var(--fg);
+  background:rgba(255,255,255,.09);
+  box-shadow:0 0 0 1px rgba(255,255,255,.1),0 2px 8px rgba(0,0,0,.3);
+}
+.nav-pill.active svg{transform:scale(1.1);}
+.nav-pill:active{transform:scale(.92);}
+
+/* ─── Desktop Sidebar ─── */
+#sidebar{
+  display:none;
+}
+@media(min-width:768px){
+  #sidebar{
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    position:fixed;top:var(--header-h);left:0;bottom:0;width:88px;
+    border-right:1px solid var(--border);background:var(--bg-soft);
+    padding:28px 0;z-index:100;overflow-y:auto;
+  }
+  #main-content{margin-left:88px;}
+}
+.sidebar-link{
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  width:100%;padding:12px 4px;
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.04em;
+  color:var(--muted);border-left:2px solid transparent;
+  transition:color .2s,background .2s,border-color .2s;
+}
+.sidebar-link svg{width:20px;height:20px;stroke-width:1.7;}
+.sidebar-link.active{color:var(--accent);background:var(--surface);border-left-color:var(--accent);}
+.sidebar-link:hover:not(.active){color:var(--fg);background:var(--surface);}
+
+/* ─── Pages ─── */
+.page{display:none;animation:.3s var(--ease-spring) both viewIn;}
+.page.active{display:block;}
+@keyframes viewIn{0%{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+/* ─── Section ─── */
+.page-pad{padding:0 16px 40px;}
+.section-head{
+  display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  margin-bottom:14px;margin-top:32px;
+}
+.section-head:first-of-type{margin-top:0;}
+.section-idx{font-family:var(--font-mono);font-size:11px;color:var(--subtle);}
+.section-title{font-family:var(--font-display);font-size:24px;letter-spacing:.03em;color:var(--fg);line-height:1.25;padding-bottom:2px;}
+.section-sub{font-family:var(--font-mono);font-size:10.5px;color:var(--subtle);line-height:1.4;}
+.section-h2{line-height:1.25;padding-bottom:2px;}
+h1,h2,h3{line-height:1.25;}
+
+/* ─── Hero Carousel ─── */
+.hero{
+  position:relative;margin:16px 0 0;border-radius:var(--radius-lg);
+  min-height:380px;overflow:hidden;background:var(--surface);
+  box-shadow:var(--shadow-border);
+  touch-action:pan-y;user-select:none;
+}
+@media(min-width:768px){.hero{min-height:490px;margin-top:20px;}}
+.hero-slides{position:absolute;inset:0;display:flex;transition:none;}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .55s var(--ease-out);pointer-events:none;z-index:0;}
+.hero-slide.active{opacity:1;pointer-events:auto;z-index:1;}
+.hero-bg{
+  position:absolute;inset:0;background-size:cover;background-position:center 20%;
+  transition:transform .7s var(--ease-out);
+}
+.hero-shade{
+  position:absolute;inset:0;
+  background:linear-gradient(rgba(7,7,10,.2) 0%,rgba(7,7,10,.55) 45%,rgba(7,7,10,.92) 100%),
+              linear-gradient(90deg,rgba(7,7,10,.7) 0%,transparent 55%);
+}
+.hero-content{position:relative;max-width:600px;padding:20px 20px;margin-top:auto;}
+.hero-inner{display:flex;flex-direction:column;height:100%;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;
+  color:var(--accent);text-transform:uppercase;margin-bottom:10px;
+}
+.live-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--ember);
+  box-shadow:0 0 0 3px var(--ember-soft);
+  animation:livePulse 1.8s ease-in-out infinite;
+}
+@keyframes livePulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+.hero-title{
+  font-family:var(--font-display);
+  font-size:clamp(1.9rem,5.5vw,3.4rem);
+  line-height:1.08;font-weight:700;letter-spacing:-.02em;
+  color:var(--fg);margin-bottom:12px;padding-bottom:2px;
+}
+.hero-meta{
+  display:flex;flex-wrap:wrap;gap:14px;
+  font-family:var(--font-mono);font-size:12px;color:var(--muted);margin-bottom:14px;
+}
+.hero-meta span{display:inline-flex;align-items:center;gap:5px;}
+.hero-meta svg{width:13px;height:13px;}
+.hero-synopsis{
+  font-size:13.5px;line-height:1.65;color:var(--muted);
+  max-width:50ch;margin-bottom:20px;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;}
+.btn-watch{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--accent);color:var(--accent-fg);
+  padding:11px 20px;border-radius:99px;font-size:13.5px;font-weight:600;
+  transition:transform .15s var(--ease-spring),box-shadow .2s;
+  box-shadow:0 4px 20px rgba(232,228,220,.15);
+}
+.btn-watch:active{transform:scale(.95);}
+.btn-watch svg{width:15px;height:15px;fill:var(--accent-fg);}
+.btn-info{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(242,241,238,.08);color:var(--fg);
+  padding:11px 20px;border-radius:99px;font-size:13.5px;font-weight:600;
+  border:1px solid var(--border);
+  transition:background .2s,transform .15s var(--ease-spring);
+}
+.btn-info:active{transform:scale(.95);}
+.btn-info svg{width:15px;height:15px;}
+/* Manual drag indicator */
+.hero-dots{
+  position:absolute;bottom:16px;right:16px;z-index:5;
+  display:flex;gap:6px;align-items:center;
+}
+.hero-dot{
+  width:8px;height:8px;border-radius:99px;background:rgba(242,241,238,.3);
+  transition:background .3s,width .3s var(--ease-spring);cursor:pointer;
+}
+.hero-dot.active{background:var(--accent);width:22px;}
+/* Swipe arrows (visible on desktop) */
+.hero-prev,.hero-next{
+  position:absolute;top:50%;z-index:5;transform:translateY(-50%);
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(12,12,17,.65);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.12);
+  display:none;align-items:center;justify-content:center;
+  color:var(--fg);cursor:pointer;
+  transition:background .2s,transform .15s;
+}
+.hero-prev:active,.hero-next:active{transform:translateY(-50%)scale(.92);}
+@media(min-width:640px){.hero-prev,.hero-next{display:flex;}}
+.hero-prev{left:12px;}
+.hero-next{right:12px;}
+.hero-prev svg,.hero-next svg{width:18px;height:18px;}
+.hero-prev:hover,.hero-next:hover{background:rgba(232,228,220,.12);}
+
+/* ─── Film Row ─── */
+.row-scroll{
+  display:flex;gap:13px;overflow-x:auto;
+  scroll-snap-type:x proximity;padding:4px 2px 14px;
+  scrollbar-width:thin;scrollbar-color:var(--border) transparent;
+}
+.row-scroll::-webkit-scrollbar{height:5px;}
+.row-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px;}
+
+/* ─── Poster Card ─── */
+.poster-card{
+  flex-shrink:0;width:140px;scroll-snap-align:start;
+  cursor:pointer;
+}
+.poster-img-wrap{
+  position:relative;aspect-ratio:2/3;border-radius:var(--radius-sm);
+  overflow:hidden;background:var(--surface);box-shadow:var(--shadow-border);
+}
+.poster-img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease-spring);}
+.poster-card:hover .poster-img{transform:scale(1.06);}
+.poster-rating{
+  position:absolute;top:8px;right:7px;z-index:2;
+  display:flex;align-items:center;gap:4px;
+  background:rgba(7,7,10,.82);padding:3px 6px;border-radius:4px;
+  font-family:var(--font-mono);font-size:10px;color:var(--accent);
+  box-shadow:var(--shadow-border);
+}
+.poster-rating svg{width:10px;height:10px;fill:var(--accent);stroke:var(--accent);}
+.poster-overlay{
+  position:absolute;inset:0;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(7,7,10,.35);opacity:0;
+  transition:opacity .2s;
+}
+.poster-card:hover .poster-overlay,.poster-card:active .poster-overlay{opacity:1;}
+.poster-play{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--accent);display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow-elev);
+}
+.poster-play svg{width:16px;height:16px;fill:var(--accent-fg);margin-left:2px;}
+.poster-title{
+  margin-top:9px;font-size:12px;font-weight:500;color:var(--fg);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35;
+}
+.poster-meta{
+  margin-top:3px;font-family:var(--font-mono);font-size:9.5px;
+  color:var(--subtle);text-transform:uppercase;letter-spacing:.04em;
+}
+/* Grid variant */
+.poster-card.grid{width:100%;}
+
+/* ─── Skeleton ─── */
+.skeleton{
+  background:linear-gradient(100deg,var(--surface) 30%,var(--surface2) 50%,var(--surface) 70%);
+  background-size:200% 100%;border-radius:var(--radius-sm);
+  animation:shimmer 1.3s linear infinite;
+}
+@keyframes shimmer{0%{background-position:200% 0;}to{background-position:-200% 0;}}
+.skel-card{aspect-ratio:2/3;flex:0 0 140px;height:auto;}
+.skel-hero{min-height:380px;border-radius:var(--radius-lg);margin:16px 0 0;}
+@media(min-width:768px){.skel-hero{min-height:490px;margin-top:20px;}}
+
+/* ─── Film Grid ─── */
+.film-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px 12px;
+}
+@media(min-width:540px){.film-grid{grid-template-columns:repeat(3,1fr);}}
+@media(min-width:768px){.film-grid{grid-template-columns:repeat(4,1fr);}}
+@media(min-width:1024px){.film-grid{grid-template-columns:repeat(5,1fr);}}
+
+/* ─── Search ─── */
+.search-bar-mobile{
+  display:flex;align-items:center;gap:10px;
+  border-radius:14px;border:1px solid var(--border);
+  background:var(--surface);padding:12px 16px;
+  margin-bottom:20px;margin-top:8px;
+  transition:border-color .2s;
+}
+.search-bar-mobile:focus-within{border-color:rgba(232,228,220,.25);}
+@media(min-width:768px){.search-bar-mobile{display:none;}}
+.search-bar-mobile input{flex:1;font-size:14px;color:var(--fg);}
+.search-bar-mobile input::placeholder{color:var(--subtle);}
+
+/* ─── Empty State ─── */
+.empty-state{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:56px 20px;gap:12px;text-align:center;
+}
+.empty-icon{width:52px;height:52px;color:var(--subtle);}
+.empty-title{font-family:var(--font-display);font-size:20px;color:var(--muted);}
+.empty-sub{font-size:13px;color:var(--subtle);max-width:38ch;line-height:1.6;}
+.retry-btn{
+  margin-top:8px;padding:9px 20px;border-radius:99px;
+  background:var(--surface);border:1px solid var(--border);
+  font-size:13px;color:var(--fg);transition:background .2s;
+}
+.retry-btn:hover{background:var(--surface2);}
+
+/* ─── Film Detail ─── */
+#page-detail,#page-watch{display:none;}
+#page-detail.active,#page-watch.active{display:block;}
+.detail-hero{
+  position:relative;height:220px;overflow:hidden;border-radius:0;
+  background:var(--surface);
+}
+@media(min-width:768px){.detail-hero{height:380px;}}
+.detail-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 15%;filter:blur(0);}
+.detail-hero-shade{
+  position:absolute;inset:0;
+  background:linear-gradient(rgba(7,7,10,.25) 0%,rgba(7,7,10,.65) 40%,rgba(7,7,10,.95) 75%,var(--bg) 100%);
+}
+.detail-poster{
+  width:110px;flex-shrink:0;border-radius:var(--radius-sm);
+  overflow:hidden;box-shadow:var(--shadow-elev);
+  aspect-ratio:2/3;height:auto;
+}
+@media(min-width:768px){.detail-poster{width:130px;}}
+.detail-poster img{width:100%;height:100%;object-fit:cover;display:block;}
+.detail-main{padding:0 16px 40px;}
+.detail-top{display:flex;gap:14px;margin-top:-48px;position:relative;align-items:flex-end;}
+.detail-info{padding-top:6px;min-width:0;flex:1;}
+@media(min-width:768px){.detail-top{margin-top:-40px;align-items:flex-start;}.detail-info{padding-top:48px;}}
+.detail-title{
+  font-family:var(--font-display);font-size:clamp(1.5rem,5vw,2.6rem);
+  line-height:1.22;font-weight:700;letter-spacing:-.01em;padding-bottom:3px;
+}
+.detail-meta{
+  display:flex;flex-wrap:wrap;gap:12px;margin-top:10px;
+  font-family:var(--font-mono);font-size:11.5px;color:var(--muted);
+}
+.detail-meta span{display:inline-flex;align-items:center;gap:5px;}
+.detail-meta svg{width:12px;height:12px;}
+.detail-genres{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
+.genre-tag{
+  padding:4px 11px;border-radius:99px;border:1px solid var(--border);
+  font-size:11.5px;color:var(--muted);font-family:var(--font-mono);
+}
+.detail-synopsis{
+  margin-top:18px;font-size:13.5px;line-height:1.7;color:var(--muted);
+}
+.detail-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
+.cast-scroll{
+  display:flex;gap:12px;overflow-x:auto;padding:4px 2px 10px;
+  scrollbar-width:none;
+}
+.cast-scroll::-webkit-scrollbar{display:none;}
+.cast-card{flex-shrink:0;width:80px;text-align:center;cursor:default;}
+.cast-avatar{width:64px;height:64px;border-radius:50%;overflow:hidden;margin:0 auto;background:var(--surface2);}
+.cast-avatar img{width:100%;height:100%;object-fit:cover;}
+.cast-name{margin-top:7px;font-size:11px;font-weight:500;color:var(--fg);line-height:1.3;}
+.cast-char{font-size:10px;color:var(--subtle);margin-top:2px;font-family:var(--font-mono);}
+.server-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.server-tab{
+  padding:7px 15px;border-radius:99px;border:1px solid var(--border);
+  font-size:12.5px;color:var(--muted);transition:all .2s;cursor:pointer;
+  font-family:var(--font-mono);
+}
+.server-tab.active,.server-tab:hover{background:var(--accent);color:var(--accent-fg);border-color:var(--accent);}
+
+/* ─── Player ─── */
+.player-wrap{
+  aspect-ratio:16/9;background:#000;border-radius:var(--radius-md);
+  box-shadow:var(--shadow-border);position:relative;overflow:hidden;
+}
+.player-wrap iframe{width:100%;height:100%;border:0;background:#000;}
+.player-msg{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:10px;
+  background:var(--surface);color:var(--muted);text-align:center;padding:20px;
+}
+.player-msg svg{width:40px;height:40px;color:var(--subtle);}
+
+/* ─── Season Selector ─── */
+.season-ep-wrap{margin-top:20px;}
+.select-styled{
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--fg);padding:9px 14px;border-radius:var(--radius-sm);
+  font-size:13px;cursor:pointer;
+}
+.ep-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));
+  gap:8px;margin-top:14px;
+}
+.ep-btn{
+  aspect-ratio:1;border-radius:var(--radius-sm);
+  background:var(--surface);border:1px solid var(--border);
+  font-size:12.5px;font-weight:500;color:var(--fg);
+  transition:background .2s,border-color .2s,transform .1s;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.ep-btn.active,.ep-btn:hover{background:var(--accent);color:var(--accent-fg);border-color:var(--accent);}
+.ep-btn:active{transform:scale(.93);}
+
+/* ─── Info Page ─── */
+.info-hero{
+  border-radius:var(--radius-lg);border:1px solid var(--border);
+  background:var(--surface);padding:36px 24px;text-align:center;
+  box-shadow:var(--shadow-border);margin-top:8px;
+}
+.info-clapperboard{
+  width:52px;height:52px;margin:0 auto 14px;color:var(--accent);
+}
+.info-title{font-family:var(--font-display);font-size:36px;letter-spacing:.08em;}
+.info-sub{font-family:var(--font-mono);font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:.04em;}
+.info-grid{display:grid;gap:14px;margin-top:20px;}
+@media(min-width:540px){.info-grid{grid-template-columns:1fr 1fr;}}
+.info-card{border-radius:var(--radius-lg);border:1px solid var(--border);background:var(--surface);padding:20px;}
+.info-card h3{
+  display:flex;align-items:center;gap:8px;font-family:var(--font-display);
+  font-size:18px;letter-spacing:.04em;color:var(--accent);margin-bottom:10px;
+}
+.info-card h3 svg{width:16px;height:16px;}
+.info-card p{font-size:13px;line-height:1.72;color:var(--muted);margin-top:8px;}
+.info-notice{
+  border-radius:var(--radius-lg);border:1px solid rgba(226,75,58,.3);
+  background:rgba(226,75,58,.07);padding:18px 20px;margin-top:14px;
+}
+.info-notice h4{font-family:var(--font-display);font-size:16px;color:var(--ember);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.info-notice h4 svg{width:15px;height:15px;}
+.info-notice p{font-size:12.5px;line-height:1.75;color:var(--muted);}
+.dev-card{
+  border-radius:var(--radius-lg);border:1px solid var(--border);
+  background:var(--surface);padding:20px;margin-top:14px;
+}
+.dev-title{font-family:var(--font-display);font-size:18px;letter-spacing:.04em;color:var(--accent);margin-bottom:14px;}
+.dev-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.dev-row:last-child{border-bottom:none;}
+.dev-label{color:var(--subtle);font-family:var(--font-mono);font-size:11.5px;letter-spacing:.04em;}
+.dev-val{color:var(--fg);font-weight:500;}
+.wa-link{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(37,211,102,.12);color:#25d366;
+  padding:4px 10px;border-radius:99px;font-size:12px;
+  border:1px solid rgba(37,211,102,.25);
+  transition:background .2s;cursor:pointer;
+}
+.wa-link:hover{background:rgba(37,211,102,.2);}
+.wa-link svg{width:14px;height:14px;fill:#25d366;}
+.team-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:9px 0;border-bottom:1px solid var(--border);font-size:13px;
+}
+.team-row:last-child{border-bottom:none;}
+.team-name{color:var(--fg);font-weight:500;}
+.footer-note{
+  text-align:center;font-family:var(--font-mono);font-size:10.5px;
+  color:var(--subtle);padding:24px 0;letter-spacing:.06em;
+}
+
+/* ─── History Page ─── */
+.history-empty svg{color:var(--subtle);}
+.history-item{
+  display:flex;gap:13px;padding:12px 0;border-bottom:1px solid var(--border);
+  cursor:pointer;transition:opacity .2s;
+}
+.history-item:hover{opacity:.8;}
+.history-item:last-child{border-bottom:none;}
+.history-thumb{
+  width:60px;flex-shrink:0;border-radius:6px;overflow:hidden;background:var(--surface2);
+  aspect-ratio:2/3;
+}
+.history-thumb img{width:100%;height:100%;object-fit:cover;}
+.history-meta{display:flex;flex-direction:column;justify-content:center;gap:4px;min-width:0;}
+.history-title{font-size:13.5px;font-weight:500;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.history-type{font-family:var(--font-mono);font-size:10.5px;color:var(--subtle);text-transform:uppercase;letter-spacing:.04em;}
+
+/* ─── Rekomendasi ─── */
+.reko-filter{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;margin-bottom:16px;}
+.reko-filter::-webkit-scrollbar{display:none;}
+.filter-chip{
+  flex-shrink:0;padding:7px 16px;border-radius:99px;
+  border:1px solid var(--border);background:var(--surface);
+  font-size:12.5px;color:var(--muted);cursor:pointer;
+  transition:all .2s;white-space:nowrap;
+}
+.filter-chip.active{background:var(--accent);color:var(--accent-fg);border-color:var(--accent);}
+
+/* ─── Scroll to top btn ─── */
+#scrolltop{
+  position:fixed;bottom:calc(var(--nav-h) + 28px + env(safe-area-inset-bottom));
+  right:16px;z-index:180;
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(12,12,17,.8);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.12);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--fg);opacity:0;pointer-events:none;
+  transition:opacity .3s,transform .3s;
+  cursor:pointer;
+}
+#scrolltop.show{opacity:1;pointer-events:auto;}
+#scrolltop:active{transform:scale(.9);}
+#scrolltop svg{width:18px;height:18px;}
+@media(min-width:768px){#scrolltop{bottom:28px;}}
+
+/* ─── Section h2 ─── */
+.section-h2{
+  display:flex;align-items:baseline;gap:10px;
+  font-family:var(--font-display);font-size:26px;letter-spacing:.03em;
+  color:var(--fg);margin-bottom:14px;
+}
+.section-h2 .idx{font-family:var(--font-mono);font-size:11px;color:var(--subtle);}
+
+/* ─── Toast ─── */
+#toast{
+  position:fixed;bottom:calc(var(--nav-h)+20px+env(safe-area-inset-bottom));
+  left:50%;transform:translateX(-50%) translateY(10px);
+  background:var(--surface2);border:1px solid var(--border);
+  color:var(--fg);font-size:12.5px;padding:9px 18px;
+  border-radius:99px;z-index:9000;opacity:0;
+  transition:opacity .3s,transform .3s;pointer-events:none;
+  white-space:nowrap;backdrop-filter:blur(8px);
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+@media(min-width:768px){#toast{bottom:28px;}}
+
+/* ─── Trailer Modal ─── */
+#trailer-modal{
+  display:none;position:fixed;inset:0;z-index:8000;
+  background:rgba(0,0,0,.88);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;padding:20px;
+}
+#trailer-modal.open{display:flex;}
+.trailer-modal-inner{
+  width:100%;max-width:860px;position:relative;
+  animation:.35s var(--ease-spring) both modalIn;
+}
+@keyframes modalIn{0%{opacity:0;transform:scale(.92);}to{opacity:1;transform:none;}}
+.trailer-close{
+  position:absolute;top:-44px;right:0;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--fg);cursor:pointer;
+}
+.trailer-player{aspect-ratio:16/9;border-radius:var(--radius-md);overflow:hidden;background:#000;}
+.trailer-player iframe{width:100%;height:100%;border:0;}
+
+/* ─── Responsive padding ─── */
+@media(min-width:768px){.page-pad{padding:0 24px 60px;}}
+@media(min-width:1024px){.page-pad{padding:0 32px 60px;}}
+
+/* ─── Server badge (Recommended) — clean, no emoji ─── */
+.server-tab{position:relative;}
+.rec-badge{
+  display:inline-flex;align-items:center;
+  margin-left:6px;vertical-align:middle;
+  background:linear-gradient(135deg,#e24b3a,#c73d2d);color:#fff;
+  font-family:var(--font-mono);font-size:8.5px;letter-spacing:.08em;font-weight:700;
+  padding:2.5px 7px;border-radius:4px;text-transform:uppercase;
+  line-height:1.3;
+  box-shadow:0 1px 4px rgba(226,75,58,.35);
+}
+
+/* ─── PWA Install Banner (home top) ─── */
+.pwa-banner{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 14px;border-radius:var(--radius-md);
+  background:linear-gradient(135deg,rgba(226,75,58,.1),rgba(18,18,24,.9));
+  border:1px solid rgba(226,75,58,.22);
+  margin-bottom:14px;margin-top:6px;
+  cursor:pointer;transition:background .2s,transform .12s;
+  position:relative;overflow:hidden;
+}
+.pwa-banner:active{transform:scale(.98);}
+.pwa-banner::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(226,75,58,.5),transparent);
+}
+.pwa-banner-icon{
+  width:42px;height:42px;border-radius:10px;overflow:hidden;flex-shrink:0;
+  box-shadow:0 4px 12px rgba(0,0,0,.4);outline:1px solid rgba(255,255,255,.08);
+}
+.pwa-banner-icon img{width:100%;height:100%;object-fit:cover;}
+.pwa-banner-text{flex:1;min-width:0;}
+.pwa-banner-title{font-size:13px;font-weight:700;color:var(--fg);line-height:1.3;}
+.pwa-banner-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+.pwa-banner-cta{
+  flex-shrink:0;padding:7px 14px;border-radius:99px;
+  background:var(--ember);color:#fff;font-size:12px;font-weight:700;
+  letter-spacing:.02em;white-space:nowrap;
+  transition:background .2s;
+}
+.pwa-banner:hover .pwa-banner-cta{background:#c73d2d;}
+
+/* ─── PWA Install Sheet (bottom popup) ─── */
+#pwa-sheet{
+  position:fixed;inset:0;z-index:8800;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  pointer-events:none;
+}
+#pwa-sheet.open{pointer-events:auto;}
+#pwa-sheet-bg{
+  position:absolute;inset:0;background:rgba(0,0,0,.6);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  opacity:0;transition:opacity .3s;cursor:pointer;
+}
+#pwa-sheet.open #pwa-sheet-bg{opacity:1;}
+#pwa-sheet-card{
+  position:relative;z-index:1;
+  background:var(--surface2);
+  border-top:1px solid rgba(255,255,255,.1);
+  border-radius:24px 24px 0 0;
+  padding:20px 20px calc(20px + env(safe-area-inset-bottom));
+  transform:translateY(110%);transition:transform .4s var(--ease-spring);
+  max-width:520px;margin:0 auto;width:100%;
+}
+#pwa-sheet.open #pwa-sheet-card{transform:translateY(0);}
+.pwa-sheet-handle{
+  width:36px;height:4px;border-radius:99px;
+  background:rgba(255,255,255,.15);margin:0 auto 18px;
+}
+.pwa-sheet-row{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+.pwa-sheet-icon{
+  width:56px;height:56px;border-radius:14px;overflow:hidden;flex-shrink:0;
+  box-shadow:0 6px 20px rgba(0,0,0,.4);
+  outline:1px solid rgba(255,255,255,.1);
+}
+.pwa-sheet-icon img{width:100%;height:100%;object-fit:cover;}
+.pwa-sheet-info{flex:1;min-width:0;}
+.pwa-sheet-title{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--fg);}
+.pwa-sheet-dev{font-size:12px;color:var(--muted);margin-top:3px;}
+.pwa-sheet-stars{color:var(--ember);font-size:13px;margin-top:4px;letter-spacing:.05em;}
+.pwa-sheet-features{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px;
+}
+.pwa-feat{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 12px;border-radius:var(--radius-sm);
+  background:var(--surface);border:1px solid var(--border);
+  font-size:12px;color:var(--muted);
+}
+.pwa-feat svg{width:16px;height:16px;color:var(--ember);flex-shrink:0;}
+.pwa-sheet-btn{
+  width:100%;padding:14px;border-radius:14px;
+  background:var(--ember);color:#fff;
+  font-size:15px;font-weight:700;letter-spacing:.02em;
+  transition:background .2s,transform .12s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.pwa-sheet-btn:active{transform:scale(.97);background:#c73d2d;}
+.pwa-sheet-btn svg{width:18px;height:18px;}
+.pwa-sheet-note{
+  text-align:center;font-size:11px;color:var(--subtle);
+  margin-top:10px;line-height:1.6;
+}
+.pwa-sheet-dismiss{
+  width:100%;padding:12px;border-radius:14px;
+  background:transparent;color:var(--muted);font-size:14px;
+  margin-top:8px;transition:color .2s;
+}
+.pwa-sheet-dismiss:hover{color:var(--fg);}
+.pwa-installed-badge{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 16px;border-radius:99px;
+  background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.2);
+  color:#25d366;font-size:13px;font-weight:600;
+}
+.pwa-installed-badge svg{width:16px;height:16px;stroke:#25d366;}
+
+/* Player tools — lock & orientation */
+.player-tools{display:flex;gap:8px;margin-top:10px;}
+.player-tool{
+  flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:42px;padding:9px 12px;border-radius:12px;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--muted);font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;transition:border-color .2s,color .2s,background .2s;
+}
+.player-tool svg{width:16px;height:16px;flex-shrink:0;}
+.player-tool.on{color:var(--fg);border-color:rgba(232,228,220,.38);background:var(--surface2);}
+.player-shield{
+  position:absolute;inset:0;z-index:4;display:flex;align-items:flex-end;justify-content:center;
+  background:linear-gradient(to top,rgba(7,7,10,.72),rgba(7,7,10,.18) 46%,rgba(7,7,10,.08));
+  pointer-events:auto;
+}
+.player-wrap.is-locked iframe{pointer-events:none;}
+.shield-chip{
+  margin:14px;padding:8px 12px;border-radius:999px;
+  background:rgba(7,7,10,.78);border:1px solid rgba(255,255,255,.12);
+  color:var(--fg);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;
+  transition:opacity .5s ease, transform .5s ease;
+}
+.shield-chip.fade-out{
+  opacity:0;
+  transform:translateY(8px);
+  pointer-events:none;
+}
+.player-wrap:fullscreen{border-radius:0;aspect-ratio:auto;width:100%;height:100%;}
+.player-wrap:fullscreen iframe{width:100%;height:100%;}
+
+/* Remind */
+.remind-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  margin-top:8px;width:100%;min-height:30px;padding:5px 8px;border-radius:999px;
+  border:1px solid var(--border);background:var(--surface);
+  color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:.04em;
+}
+.remind-btn.on{color:var(--fg);border-color:rgba(226,75,58,.5);background:rgba(226,75,58,.1);}
+.remind-btn.detail{width:auto;margin-top:0;padding:10px 16px;font-size:12px;}
+
+/* Live status */
+.status-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;}
+.status-cell{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 12px 11px;}
+.status-k{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;color:var(--subtle);text-transform:uppercase;}
+.status-v{margin-top:5px;font-size:14.5px;font-weight:600;color:var(--fg);display:flex;align-items:center;gap:8px;line-height:1.3;}
+.status-dot{width:7px;height:7px;border-radius:50%;background:#3dd68c;box-shadow:0 0 0 3px rgba(61,214,140,.16);flex-shrink:0;}
+.status-dot.off{background:var(--ember);box-shadow:0 0 0 3px rgba(226,75,58,.18);}
+.status-note{margin-top:10px;font-size:11.5px;color:var(--subtle);line-height:1.55;}
+
+/* Search spotlight */
+.search-recent{margin:4px 0 16px;}
+.search-recent-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+.search-recent-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--subtle);margin:0;}
+.search-clear-btn{
+  flex-shrink:0;padding:4px 10px;border-radius:999px;
+  border:1px solid var(--border);background:transparent;
+  color:var(--muted);font-size:11px;font-family:var(--font-mono);letter-spacing:.04em;
+  cursor:pointer;transition:color .15s,border-color .15s;
+}
+.search-clear-btn:hover,.search-clear-btn:active{color:var(--ember);border-color:var(--ember);}
+.search-recent-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
+.search-chip{
+  flex-shrink:0;padding:7px 12px;border-radius:999px;
+  border:1px solid var(--border);background:var(--surface);
+  color:var(--fg);font-size:12.5px;
+}
+.search-chip.clear{color:var(--muted);}
+
+
+/* Share sheet */
+#share-sheet{position:fixed;inset:0;z-index:9000;display:flex;align-items:flex-end;justify-content:center;pointer-events:none;opacity:0;transition:opacity .22s;}
+#share-sheet.open{pointer-events:auto;opacity:1;}
+.share-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);}
+.share-card{
+  position:relative;width:100%;max-width:400px;margin:0 12px 16px;
+  background:linear-gradient(180deg,var(--surface2) 0%,var(--surface) 100%);
+  border:1px solid rgba(255,255,255,.1);border-radius:22px;
+  padding:14px 18px 20px;transform:translateY(28px);transition:transform .28s var(--ease-spring);
+  box-shadow:0 24px 60px rgba(0,0,0,.55);
+}
+#share-sheet.open .share-card{transform:translateY(0);}
+.share-handle{width:36px;height:4px;border-radius:4px;background:rgba(255,255,255,.18);margin:2px auto 14px;}
+.share-preview{
+  display:flex;gap:12px;align-items:center;padding:10px;border-radius:14px;
+  background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.06);margin-bottom:16px;
+}
+.share-preview img{width:52px;height:78px;object-fit:cover;border-radius:8px;background:var(--bg);}
+.share-preview-meta{flex:1;min-width:0;}
+.share-preview-title{font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--fg);line-height:1.25;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.share-preview-sub{font-size:11.5px;color:var(--muted);margin-top:4px;}
+.share-title{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--subtle);text-align:center;margin-bottom:12px;}
+.share-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.share-btn{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  padding:14px 10px;border-radius:14px;font-size:12px;font-weight:600;
+  border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:var(--fg);text-decoration:none;cursor:pointer;
+  transition:transform .15s,background .15s;
+}
+.share-btn:active{transform:scale(.96);}
+.share-btn svg{width:22px;height:22px;flex-shrink:0;}
+.share-btn.wa{grid-column:1/-1;flex-direction:row;gap:10px;padding:14px;font-size:14px;
+  background:linear-gradient(135deg,#25D366,#1faa55);border:0;color:#fff;
+  box-shadow:0 8px 24px rgba(37,211,102,.25);}
+.share-btn.copy{background:rgba(255,255,255,.05);}
+.share-dismiss{display:block;width:100%;margin-top:12px;padding:11px;border:0;background:transparent;color:var(--muted);font-size:13px;cursor:pointer;}
+
+
+
+
+.age-badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:2px 8px;border-radius:4px;font-family:var(--font-mono);
+  font-size:11px;font-weight:600;letter-spacing:.04em;
+  color:var(--fg);background:rgba(226,75,58,.15);
+  border:1px solid rgba(226,75,58,.35);
+}
+</style>
+</head>
+<body>
+
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="eclipse">
+    <div class="eclipse-corona"></div>
+    <div class="eclipse-rim"></div>
+    <div class="eclipse-disc">
+      <div class="eclipse-logo">
+        <img src="https://raw.githubusercontent.com/aryaexeuyf/Image/main/photo_2026-09-04_00-14-27.jpg" alt="EclipseX" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.style.display='none'"/>
+      </div>
+    </div>
+  </div>
+  <div class="splash-brand">ECLIPSE<span>X</span></div>
+  <div class="splash-sub">Film · Series · Discover</div>
+  <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+</div>
+
+<!-- TOP LOADING BAR -->
+<div id="topbar"></div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- TRAILER MODAL -->
+<div id="trailer-modal" onclick="closeTrailer(event)">
+  <div class="trailer-modal-inner">
+    <button class="trailer-close" onclick="closeTrailerBtn()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="trailer-player" id="trailer-player"></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <a class="logo-link" href="#" onclick="navigate('home');return false;">
+    <span class="logo-main">ECLIPSE<span class="x">X</span></span>
+    <span class="logo-sub">FILM</span>
+  </a>
+  <form class="search-form" onsubmit="doSearch(event)">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input id="header-search" type="text" placeholder="Cari judul film atau series..." oninput="onHeaderSearchInput(this.value)" autocomplete="off"/>
+  </form>
+</header>
+
+<!-- SCROLL TO TOP -->
+<button id="scrolltop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<!-- MAIN APP -->
+<div class="app-bg" id="app">
+
+  <!-- SIDEBAR (Desktop) -->
+  <nav id="sidebar">
+    <a class="sidebar-link active" href="#" data-nav="home" onclick="navigate('home');return false;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Home
+    </a>
+    <a class="sidebar-link" href="#" data-nav="search" onclick="navigate('search');return false;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Search
+    </a>
+    <a class="sidebar-link" href="#" data-nav="reko" onclick="navigate('reko');return false;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2"/><path d="m9 12 2 2 4-4"/></svg>
+      Reko
+    </a>
+    <a class="sidebar-link" href="#" data-nav="history" onclick="navigate('history');return false;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+      History
+    </a>
+    <a class="sidebar-link" href="#" data-nav="info" onclick="navigate('info');return false;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><circle cx="12" cy="8" r="1" fill="currentColor"/></svg>
+      Info
+    </a>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div id="main-content">
+
+    <!-- PAGE: HOME -->
+    <div id="page-home" class="page page-pad active">
+      <!-- PWA install banner — hidden once installed -->
+      <div class="pwa-banner" id="pwa-banner" onclick="openPwaSheet()" style="display:none;">
+        <div class="pwa-banner-icon">
+          <img src="https://raw.githubusercontent.com/aryaexeuyf/Image/main/photo_2026-09-04_00-14-31.jpg" alt="EclipseX" onerror="this.parentElement.style.background='var(--ember)';this.style.display='none'"/>
+        </div>
+        <div class="pwa-banner-text">
+          <div class="pwa-banner-title">Install EclipseX Film</div>
+          <div class="pwa-banner-sub">Nikmati aplikasi full tanpa khawatir • Gratis</div>
+        </div>
+        <div class="pwa-banner-cta">Install</div>
+      </div>
+      <div id="hero-section"></div>
+      <section>
+        <div class="section-head" style="margin-top:28px;">
+          <div style="display:flex;align-items:baseline;gap:10px;">
+            <span class="section-idx">01</span>
+            <h2 class="section-title">Segera Tayang</h2>
+          </div>
+          <span class="section-sub">UPCOMING</span>
+        </div>
+        <div id="row-upcoming" class="row-scroll">
+          <div class="skel-card skeleton"></div><div class="skel-card skeleton"></div>
+          <div class="skel-card skeleton"></div><div class="skel-card skeleton"></div>
+          <div class="skel-card skeleton"></div>
+        </div>
+      </section>
+      <section>
+        <div class="section-head">
+          <div style="display:flex;align-items:baseline;gap:10px;">
+            <span class="section-idx">02</span>
+            <h2 class="section-title">Terbaru</h2>
+          </div>
+          <span class="section-sub">LATEST</span>
+        </div>
+        <div id="row-latest" class="row-scroll">
+          <div class="skel-card skeleton"></div><div class="skel-card skeleton"></div>
+          <div class="skel-card skeleton"></div><div class="skel-card skeleton"></div>
+          <div class="skel-card skeleton"></div>
+        </div>
+      </section>
+      <section>
+        <div class="section-head">
+          <div style="display:flex;align-items:baseline;gap:10px;">
+            <span class="section-idx">03</span>
+            <h2 class="section-title">Rating Tertinggi</h2>
+          </div>
+          <span class="section-sub">TOP RATED</span>
+        </div>
+        <div id="row-top" class="row-scroll">
+          <div class="skel-card skeleton"></div><div class="skel-card skeleton"></div>
+          <div class="skel-card skeleton"></div><div class="skel-card skeleton"></div>
+          <div class="skel-card skeleton"></div>
+        </div>
+      </section>
+      <section>
+        <div class="section-head">
+          <div style="display:flex;align-items:baseline;gap:10px;">
+            <span class="section-idx">04</span>
+            <h2 class="section-title">Rekomendasi</h2>
+          </div>
+          <span class="section-sub">POPULER</span>
+        </div>
+        <div id="row-popular" class="row-scroll">
+          <div class="skel-card skeleton"></div><div class="skel-card skeleton"></div>
+          <div class="skel-card skeleton"></div><div class="skel-card skeleton"></div>
+          <div class="skel-card skeleton"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- PAGE: SEARCH -->
+    <div id="page-search" class="page page-pad">
+      <form class="search-bar-mobile" onsubmit="doSearch(event)">
+        <svg style="width:16px;height:16px;color:var(--muted);flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="mobile-search" type="text" placeholder="Cari judul film atau series..." oninput="onMobileSearchInput(this.value)" autocomplete="off"/>
+      </form>
+      <div id="search-recent" class="search-recent" hidden></div>
+      <div id="search-results">
+        <div class="empty-state">
+          <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <div class="empty-title">Cari Film</div>
+          <div class="empty-sub">Ketik judul film atau series yang ingin kamu temukan.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE: REKOMENDASI -->
+    <div id="page-reko" class="page page-pad">
+      <div style="margin-top:8px;margin-bottom:20px;">
+        <h1 style="font-family:var(--font-display);font-size:28px;letter-spacing:.04em;">Rekomendasi</h1>
+        <p style="font-size:13px;color:var(--muted);margin-top:5px;">Film & series populer pilihan editor.</p>
+      </div>
+      <div class="reko-filter" id="reko-filter">
+        <button class="filter-chip active" onclick="filterReko('semua',this)">Semua</button>
+        <button class="filter-chip" onclick="filterReko('movie',this)">Movie</button>
+        <button class="filter-chip" onclick="filterReko('series',this)">Series</button>
+        <button class="filter-chip" onclick="filterReko('action',this)">Action</button>
+        <button class="filter-chip" onclick="filterReko('drama',this)">Drama</button>
+        <button class="filter-chip" onclick="filterReko('comedy',this)">Comedy</button>
+      </div>
+      <div id="reko-grid" class="film-grid">
+        <div class="skeleton" style="aspect-ratio:2/3;border-radius:var(--radius-sm);"></div>
+        <div class="skeleton" style="aspect-ratio:2/3;border-radius:var(--radius-sm);"></div>
+        <div class="skeleton" style="aspect-ratio:2/3;border-radius:var(--radius-sm);"></div>
+        <div class="skeleton" style="aspect-ratio:2/3;border-radius:var(--radius-sm);"></div>
+      </div>
+    </div>
+
+    <!-- PAGE: HISTORY -->
+    <div id="page-history" class="page page-pad">
+      <div style="margin-top:8px;margin-bottom:20px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+        <div>
+          <h1 style="font-family:var(--font-display);font-size:28px;letter-spacing:.04em;">Riwayat</h1>
+          <p style="font-size:13px;color:var(--muted);margin-top:5px;">Film yang pernah kamu buka di perangkat ini.</p>
+        </div>
+        <button id="clear-history-btn" onclick="clearHistory()" style="display:none;flex-shrink:0;padding:9px 16px;border-radius:99px;border:1px solid var(--border);background:var(--surface);font-size:12.5px;color:var(--muted);font-family:var(--font-mono);letter-spacing:.03em;transition:all .2s;cursor:pointer;">
+          Hapus Riwayat
+        </button>
+      </div>
+      <div id="history-list"></div>
+    </div>
+
+    <!-- PAGE: INFO -->
+    <div id="page-info" class="page page-pad">
+      <div class="info-hero">
+        <svg class="info-clapperboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.6l13.5-4.4c1-.3 2.1.3 2.4 1.3Z"/>
+          <path d="m6.2 5.3 3.1 3.9"/>
+          <path d="m12.4 3.4 3.1 3.9"/>
+          <path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
+        </svg>
+        <h1 class="info-title">ECLIPSEX-FILM</h1>
+        <p class="info-sub">PLATFORM INFO &amp; STREAMING FILM</p>
+      </div>
+
+      <div class="info-grid">
+        <article class="info-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 8 6 4-6 4Z"/></svg>
+            Tentang EclipseX
+          </h3>
+          <p>ECLIPSEX-FILM menghadirkan informasi lengkap seputar film dan series — mulai dari yang segera tayang, terbaru, rating tertinggi, hingga yang sedang populer — dalam satu halaman yang ringkas dan mudah dijelajahi.</p>
+          <p>Data film diambil secara langsung (real-time) sehingga daftar Upcoming, Latest, Top Rated, dan Populer selalu mengikuti pembaruan terkini.</p>
+        </article>
+        <article class="info-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" x2="7.01" y1="7" y2="7"/></svg>
+            Fitur Utama
+          </h3>
+          <p>Dashboard Home berisi ringkasan film Upcoming, Latest, Top Rated, dan Rekomendasi. Halaman Search mencari judul secara langsung, sementara History mencatat film yang pernah kamu buka di perangkat ini.</p>
+          <p>Navigasi menyesuaikan perangkat: floating navbar saat dibuka lewat ponsel, dan sidebar di sisi kiri saat dibuka lewat desktop.</p>
+        </article>
+      </div>
+
+      <!-- Important notice -->
+      <div class="info-notice">
+        <h4>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+          Penting Untuk Diketahui
+        </h4>
+        <p>Website ini dapat di akses gratis. Kekurangan dari web ini adalah terlalu banyak iklan saat play video — harap di maklumi karena web ini bersifat gratis. Maintance server terus berkala, maka dari itu web di buat agak banyak iklan karena biaya server yang mahal.</p>
+        <p style="margin-top:10px;">Video film terkadang juga sempat trouble — dapat memungkinkan salah satu film di website ini tidak dapat di akses alias film tidak ada atau tidak dapat di akses. Alasannya karena source film tersebut sudah expired maka film tidak dapat di putar.</p>
+      </div>
+
+      <!-- Developer Info -->
+      <div class="dev-card">
+        <div class="dev-title">Developer &amp; Support</div>
+        <div class="dev-row">
+          <span class="dev-label">Developer Website</span>
+          <span class="dev-val">APTECH.ID</span>
+        </div>
+        <div class="dev-row">
+          <span class="dev-label">Maintainer</span>
+          <span class="dev-val">AryaProject</span>
+        </div>
+        <div class="dev-row">
+          <span class="dev-label">Contact Dev</span>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <a class="wa-link" href="https://wa.me/6281246679050" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.002 0C4.916 0 0 4.916 0 11.002c0 1.98.525 3.83 1.437 5.437L0 22.002l5.72-1.418A10.934 10.934 0 0011.002 22c6.086 0 11.002-4.916 11.002-11.002S17.088 0 11.002 0zm.001 20.091a9.08 9.08 0 01-4.627-1.265l-.331-.197-3.395.842.876-3.307-.218-.343a9.08 9.08 0 01-1.393-4.821c0-5.023 4.067-9.09 9.088-9.09s9.088 4.067 9.088 9.09-4.067 9.091-9.088 9.091z" fill-rule="evenodd"/></svg>
+              +6281246679050
+            </a>
+            <a class="wa-link" href="https://wa.me/6281234200500" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.002 0C4.916 0 0 4.916 0 11.002c0 1.98.525 3.83 1.437 5.437L0 22.002l5.72-1.418A10.934 10.934 0 0011.002 22c6.086 0 11.002-4.916 11.002-11.002S17.088 0 11.002 0zm.001 20.091a9.08 9.08 0 01-4.627-1.265l-.331-.197-3.395.842.876-3.307-.218-.343a9.08 9.08 0 01-1.393-4.821c0-5.023 4.067-9.09 9.088-9.09s9.088 4.067 9.088 9.09-4.067 9.091-9.088 9.091z" fill-rule="evenodd"/></svg>
+              +6281234200500
+            </a>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
+          <div style="font-family:var(--font-mono);font-size:11.5px;color:var(--subtle);letter-spacing:.04em;margin-bottom:10px;">TEAM SUPPORT</div>
+          <div class="team-row">
+            <span class="team-name">@syifa</span>
+            <a class="wa-link" href="https://wa.me/6282342818241" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.002 0C4.916 0 0 4.916 0 11.002c0 1.98.525 3.83 1.437 5.437L0 22.002l5.72-1.418A10.934 10.934 0 0011.002 22c6.086 0 11.002-4.916 11.002-11.002S17.088 0 11.002 0zm.001 20.091a9.08 9.08 0 01-4.627-1.265l-.331-.197-3.395.842.876-3.307-.218-.343a9.08 9.08 0 01-1.393-4.821c0-5.023 4.067-9.09 9.088-9.09s9.088 4.067 9.088 9.09-4.067 9.091-9.088 9.091z" fill-rule="evenodd"/></svg>
+              +6282342818241
+            </a>
+          </div>
+          <div class="team-row">
+            <span class="team-name">@Kenzi</span>
+            <a class="wa-link" href="https://wa.me/62895433278050" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.002 0C4.916 0 0 4.916 0 11.002c0 1.98.525 3.83 1.437 5.437L0 22.002l5.72-1.418A10.934 10.934 0 0011.002 22c6.086 0 11.002-4.916 11.002-11.002S17.088 0 11.002 0zm.001 20.091a9.08 9.08 0 01-4.627-1.265l-.331-.197-3.395.842.876-3.307-.218-.343a9.08 9.08 0 01-1.393-4.821c0-5.023 4.067-9.09 9.088-9.09s9.088 4.067 9.088 9.09-4.067 9.091-9.088 9.091z" fill-rule="evenodd"/></svg>
+              +62895433278050
+            </a>
+          </div>
+          <div class="team-row">
+            <span class="team-name">@vickyfirmansya</span>
+            <a class="wa-link" href="https://wa.me/6283135106467" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.002 0C4.916 0 0 4.916 0 11.002c0 1.98.525 3.83 1.437 5.437L0 22.002l5.72-1.418A10.934 10.934 0 0011.002 22c6.086 0 11.002-4.916 11.002-11.002S17.088 0 11.002 0zm.001 20.091a9.08 9.08 0 01-4.627-1.265l-.331-.197-3.395.842.876-3.307-.218-.343a9.08 9.08 0 01-1.393-4.821c0-5.023 4.067-9.09 9.088-9.09s9.088 4.067 9.088 9.09-4.067 9.091-9.088 9.091z" fill-rule="evenodd"/></svg>
+              +6283135106467
+            </a>
+          </div>
+          <div class="team-row">
+            <span class="team-name">@reyvan</span>
+            <a class="wa-link" href="https://wa.me/62895424860300" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.002 0C4.916 0 0 4.916 0 11.002c0 1.98.525 3.83 1.437 5.437L0 22.002l5.72-1.418A10.934 10.934 0 0011.002 22c6.086 0 11.002-4.916 11.002-11.002S17.088 0 11.002 0zm.001 20.091a9.08 9.08 0 01-4.627-1.265l-.331-.197-3.395.842.876-3.307-.218-.343a9.08 9.08 0 01-1.393-4.821c0-5.023 4.067-9.09 9.088-9.09s9.088 4.067 9.088 9.09-4.067 9.091-9.088 9.091z" fill-rule="evenodd"/></svg>
+              +62895424860300
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="dev-card" style="margin-top:14px;" id="live-status-card">
+        <div class="dev-title" style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+          <span>Live System Status</span>
+          <span id="live-status-pill" style="font-size:10px;letter-spacing:.12em;color:#3dd68c;">CEK</span>
+        </div>
+        <div class="status-grid">
+          <div class="status-cell"><div class="status-k">Server</div><div class="status-v" id="st-server"><span class="status-dot" id="st-dot"></span><span id="st-server-txt">Memeriksa</span></div></div>
+          <div class="status-cell"><div class="status-k">Ping</div><div class="status-v" id="st-ping">—</div></div>
+          <div class="status-cell"><div class="status-k">Koneksi</div><div class="status-v" id="st-net">—</div></div>
+          <div class="status-cell"><div class="status-k">Waktu Lokal</div><div class="status-v" id="st-clock">—</div></div>
+        </div>
+        <div class="status-grid" style="margin-top:8px;">
+          <div class="status-cell"><div class="status-k">Buffer</div><div class="status-v" id="st-buffer">—</div></div>
+          <div class="status-cell"><div class="status-k">Bitrate</div><div class="status-v" id="st-bitrate">—</div></div>
+        </div>
+        <p class="status-note">Estimasi kesehatan buffer dan bitrate dari aktivitas jaringan perangkat selama sesi ini, bukan trafik server global. Katalog film disambungkan ke sumber terbaru.</p>
+      </div>
+
+      <!-- Version -->
+      <div class="dev-card" style="margin-top:14px;">
+        <div class="dev-title">Versi Aplikasi</div>
+        <div class="dev-row">
+          <span class="dev-label">Current Version</span>
+          <span class="dev-val">v5.0</span>
+        </div>
+        <div class="dev-row">
+          <span class="dev-label">Build</span>
+          <span class="dev-val">EclipseX Film · 2026</span>
+        </div>
+      </div>
+
+      <!-- Share with friends -->
+      <div class="dev-card" style="margin-top:14px;">
+        <div class="dev-title">Share with your friends</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;">Ajak teman nonton film & series gratis di EclipseX Film. Bagikan link via WhatsApp — preview gambar otomatis muncul dari situs.</p>
+        <a class="wa-link" href="https://wa.me/?text=%F0%9F%8E%AC%20*ECLIPSEX%20FILM*%20%E2%80%94%20Streaming%20Film%20%26%20Series%20Gratis!%0A%0A%E2%9C%A8%20Film%20segera%20tayang%2C%20terbaru%2C%20top%20rated%20%26%20populer%0A%E2%9C%A8%20Banyak%20server%20pilihan%20%28EFS-01%20%2F%20EXM-02%20%2F%20EX-03%20%2F%20CINE-04%20%2F%20XSTAR-05%20%2F%20Nexus-06%29%0A%E2%9C%A8%20UI%20modern%20%2B%20bisa%20diinstall%20sebagai%20aplikasi%0A%E2%9C%A8%20Gratis%20selamanya%0A%0A%F0%9F%91%89%20Buka%20sekarang%3A%0Ahttps%3A%2F%2Fspoo.me%2FEclipseXFilm" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 18px;font-size:13.5px;">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.002 0C4.916 0 0 4.916 0 11.002c0 1.98.525 3.83 1.437 5.437L0 22.002l5.72-1.418A10.934 10.934 0 0011.002 22c6.086 0 11.002-4.916 11.002-11.002S17.088 0 11.002 0zm.001 20.091a9.08 9.08 0 01-4.627-1.265l-.331-.197-3.395.842.876-3.307-.218-.343a9.08 9.08 0 01-1.393-4.821c0-5.023 4.067-9.09 9.088-9.09s9.088 4.067 9.088 9.09-4.067 9.091-9.088 9.091z" fill-rule="evenodd"/></svg>
+          Bagikan ke WhatsApp
+        </a>
+      </div>
+
+      <!-- Cara menonton & Default Server -->
+      <div class="dev-card" style="margin-top:14px;">
+        <div class="dev-title">Cara Menonton &amp; Server</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:12px;">
+          1. Pilih film/series → Tonton Sekarang.<br/>
+          2. Pilih server yang tersedia (EFS-01 / EXM-02 / EX-03 / CINE-04 / XSTAR-05 / Nexus-06).<br/>
+          3. Gunakan <strong style="color:var(--fg)">EFS-01</strong> sebagai default, atau <strong style="color:var(--fg)">Nexus-06</strong> jika video macet.<br/>
+          4. Untuk mengurangi iklan lebih jauh, set DNS privat ke <code style="background:var(--surface);padding:2px 6px;border-radius:4px;font-size:12px;">dns.adguard.com</code> di pengaturan jaringan perangkatmu.
+        </p>
+        <p style="font-size:12.5px;color:var(--muted);margin-bottom:10px;">Default Server (untuk pemutaran berikutnya):</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;" id="default-server-btns">
+          <button class="server-tab" onclick="setDefaultServerIdx(0);updateDefaultServerUI()">EFS-01</button>
+          <button class="server-tab" onclick="setDefaultServerIdx(1);updateDefaultServerUI()">EXM-02</button>
+          <button class="server-tab" onclick="setDefaultServerIdx(2);updateDefaultServerUI()">EX-03</button>
+          <button class="server-tab" onclick="setDefaultServerIdx(3);updateDefaultServerUI()">CINE-04</button>
+          <button class="server-tab" onclick="setDefaultServerIdx(4);updateDefaultServerUI()">XSTAR-05</button>
+          <button class="server-tab" onclick="setDefaultServerIdx(5);updateDefaultServerUI()">Nexus-06 <span class="rec-badge">REC</span></button>
+        </div>
+      </div>
+
+      <!-- Download App -->
+      <div class="dev-card" style="margin-top:14px;" id="info-download-card">
+        <div class="dev-title">Download Aplikasi</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:12px;">Install EclipseX Film sebagai aplikasi di perangkatmu (PWA). Akses lebih cepat, tampilan penuh, tanpa perlu Play Store.</p>
+        <button class="pwa-sheet-btn" style="max-width:280px;" onclick="openPwaSheet()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Install Aplikasi — Gratis
+        </button>
+      </div>
+
+      <p class="footer-note">ECLIPSEX-FILM · v5.0 · katalog real-time · nonton lebih mulus</p>
+    </div>
+
+    <!-- PAGE: DETAIL -->
+    <div id="page-detail" class="page">
+      <div id="detail-content"></div>
+    </div>
+
+    <!-- PAGE: WATCH -->
+    <div id="page-watch" class="page">
+      <div id="watch-content"></div>
+    </div>
+
+  </div><!-- /main-content -->
+</div><!-- /app -->
+
+<!-- BOTTOM NAV — floating liquid glass, no dots -->
+<nav id="bottom-nav" aria-label="Navigasi utama">
+  <button class="nav-pill active" data-nav="home" onclick="navigate('home')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Home
+  </button>
+  <button class="nav-pill" data-nav="search" onclick="navigate('search')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    Search
+  </button>
+  <button class="nav-pill" data-nav="reko" onclick="navigate('reko')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2"/><path d="m9 12 2 2 4-4"/></svg>
+    Reko
+  </button>
+  <button class="nav-pill" data-nav="history" onclick="navigate('history')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+    History
+  </button>
+  <button class="nav-pill" data-nav="info" onclick="navigate('info')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4"/><circle cx="12" cy="16" r=".5" fill="currentColor"/></svg>
+    Info
+  </button>
+</nav>
+
+<!-- PWA INSTALL SHEET -->
+<div id="pwa-sheet">
+  <div id="pwa-sheet-bg" onclick="closePwaSheet()"></div>
+  <div id="pwa-sheet-card">
+    <div class="pwa-sheet-handle"></div>
+    <div class="pwa-sheet-row">
+      <div class="pwa-sheet-icon">
+        <img src="https://raw.githubusercontent.com/aryaexeuyf/Image/main/photo_2026-09-04_00-14-31.jpg" alt="EclipseX" onerror="this.parentElement.style.background='var(--ember)';this.style.display='none'"/>
+      </div>
+      <div class="pwa-sheet-info">
+        <div class="pwa-sheet-title">EclipseX Film</div>
+        <div class="pwa-sheet-dev">by APTECH.ID · AryaProject</div>
+        <div class="pwa-sheet-stars">★★★★★</div>
+      </div>
+    </div>
+    <div class="pwa-sheet-features">
+      <div class="pwa-feat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+        Nikmati full tanpa khawatir
+      </div>
+      <div class="pwa-feat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Loading cepat
+      </div>
+      <div class="pwa-feat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        Tampilan penuh
+      </div>
+      <div class="pwa-feat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        Gratis selamanya
+      </div>
+    </div>
+    <div id="pwa-btn-area">
+      <button class="pwa-sheet-btn" onclick="triggerPwaInstall()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Install Sekarang — Gratis
+      </button>
+      <p class="pwa-sheet-note">Buka di Chrome lalu install untuk pengalaman terbaik.<br/>Tidak perlu Play Store atau App Store.</p>
+    </div>
+    <button class="pwa-sheet-dismiss" onclick="closePwaSheet()">Mungkin nanti</button>
+  </div>
+</div>
+
+
+<script>
+
+// ============================================================
+// CONSTANTS & UTILS
+// ============================================================
+const ORIGIN_UPSTREAMS=[
+  'https://zaammoviesnr.netlify.app/.netlify/functions/zaam-movies',
+  'https://zaammoviesnr.netlify.app/api/movies'
+];
+const TMDB_IMG='https://image.tmdb.org/t/p/w185';
+const ROTATE_MS=6000;
+
+const PLACEHOLDER=`data:image/svg+xml;utf8,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450"><rect width="300" height="450" fill="#111116"/><circle cx="150" cy="200" r="46" fill="none" stroke="#3a3a42" stroke-width="3"/><circle cx="150" cy="200" r="28" fill="#07070a"/><text x="50%" y="78%" fill="#5c5c66" font-family="sans-serif" font-size="13" text-anchor="middle">ECLIPSEX</text></svg>')}`;
+const PLACEHOLDER_AV=`data:image/svg+xml;utf8,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><rect width="120" height="120" fill="#1a1a20"/><circle cx="60" cy="46" r="22" fill="#4a4a54"/><path d="M20 108c4-26 26-40 40-40s36 14 40 40" fill="#4a4a54"/></svg>')}`;
+
+function truncate(s,n){if(!s)return'';return s.length>n?s.slice(0,n).trimEnd()+'…':s;}
+function esc(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+async function fetchJson(url,timeout=11000){
+  const ctrl=new AbortController();
+  const t=setTimeout(()=>ctrl.abort(),timeout);
+  try{
+    const r=await fetch(url,{signal:ctrl.signal,headers:{Accept:'application/json'}});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    return await r.json();
+  }finally{clearTimeout(t);}
+}
+
+function wrapProxies(target){
+  return[
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(target)}`,
+    `https://corsproxy.io/?${encodeURIComponent(target)}`
+  ];
+}
+
+// ─── TMDB (CORS-open, works standalone) ───
+const TMDB_API='https://api.themoviedb.org/3';
+const TMDB_KEY='8265bd1679663a7ea12ac168da84d2e8';
+const TMDB_IMG_BASE='https://image.tmdb.org/t/p/';
+
+function tmdbPoster(path,size){
+  size=size||'w500';
+  if(!path)return null;
+  if(/^https?:\/\//i.test(path))return path;
+  return TMDB_IMG_BASE+size+(path.startsWith('/')?path:'/'+path);
+}
+
+function mapTmdbItem(it){
+  if(!it||typeof it!=='object')return null;
+  if(it.media_type==='person')return null;
+  const hasTitle=!!(it.title||it.original_title);
+  const isMovie=(it.media_type==='movie')||(hasTitle&&it.media_type!=='tv');
+  const id=it.id;
+  if(!id)return null;
+  const title=it.title||it.name||it.original_title||it.original_name||'Tanpa Judul';
+  const slug=(isMovie?'movie-':'tv-')+id;
+  const releaseDate=it.release_date||it.first_air_date||null;
+  const overview=it.overview||'';
+  return{
+    id:id,slug:slug,title:title,
+    poster:tmdbPoster(it.poster_path,'w500')||PLACEHOLDER,
+    backdrop:tmdbPoster(it.backdrop_path,'w780')||tmdbPoster(it.poster_path,'w780')||PLACEHOLDER,
+    type:isMovie?'Movie':'Series',
+    tmdbId:id,imdbId:null,
+    year:releaseDate?String(releaseDate).slice(0,4):null,
+    releaseDate:releaseDate,
+    rating:typeof it.vote_average==='number'?Math.round(it.vote_average*10)/10:null,
+    overview:overview,synopsis:overview,
+    genres:[],cast:[],seasons:[],
+    stream:{servers:[],primaryIframe:null}
+  };
+}
+
+async function fetchTmdbList(kind){
+  const routes={
+    trending:TMDB_API+'/trending/all/week?api_key='+TMDB_KEY+'&language=id-ID',
+    popular:TMDB_API+'/trending/all/day?api_key='+TMDB_KEY+'&language=id-ID',
+    'top-rated':TMDB_API+'/movie/top_rated?api_key='+TMDB_KEY+'&language=id-ID',
+    upcoming:TMDB_API+'/movie/upcoming?api_key='+TMDB_KEY+'&language=id-ID',
+    latest:TMDB_API+'/movie/now_playing?api_key='+TMDB_KEY+'&language=id-ID',
+    hero:TMDB_API+'/trending/all/week?api_key='+TMDB_KEY+'&language=id-ID'
+  };
+  const j=await fetchJson(routes[kind]||routes.trending,14000);
+  return{results:(j.results||[]).map(mapTmdbItem).filter(Boolean)};
+}
+
+async function fetchTmdbSearch(q){
+  q=String(q||'').trim();
+  if(!q)return{results:[]};
+  const seen={};
+  const out=[];
+  function pushAll(arr,kind){
+    (arr||[]).forEach(function(x){
+      if(!x)return;
+      const item=kind?Object.assign({},x,{media_type:kind}):x;
+      if(item.media_type && item.media_type!=='movie' && item.media_type!=='tv')return;
+      const mapped=mapTmdbItem(item);
+      if(mapped&&mapped.slug&&!seen[mapped.slug]){
+        seen[mapped.slug]=1;
+        out.push(mapped);
+      }
+    });
+  }
+  // multi + dedicated movie/tv, 2 pages each → lebih banyak hasil
+  const pages=[1,2];
+  for(let pi=0;pi<pages.length;pi++){
+    const p=pages[pi];
+    try{
+      const multi=await fetchJson(TMDB_API+'/search/multi?api_key='+TMDB_KEY+'&language=id-ID&query='+encodeURIComponent(q)+'&include_adult=false&page='+p,12000);
+      pushAll(multi.results);
+    }catch(e){}
+    try{
+      const mov=await fetchJson(TMDB_API+'/search/movie?api_key='+TMDB_KEY+'&language=id-ID&query='+encodeURIComponent(q)+'&include_adult=false&page='+p,10000);
+      pushAll(mov.results,'movie');
+    }catch(e){}
+    try{
+      const tv=await fetchJson(TMDB_API+'/search/tv?api_key='+TMDB_KEY+'&language=id-ID&query='+encodeURIComponent(q)+'&include_adult=false&page='+p,10000);
+      pushAll(tv.results,'tv');
+    }catch(e){}
+  }
+  // English fallback if few results
+  if(out.length<8){
+    try{
+      const multi=await fetchJson(TMDB_API+'/search/multi?api_key='+TMDB_KEY+'&language=en-US&query='+encodeURIComponent(q)+'&include_adult=false&page=1',10000);
+      pushAll(multi.results);
+    }catch(e){}
+  }
+  return{results:out};
+}
+
+async function fetchTmdbDetail(slug){
+  const m=String(slug||'').match(/^(movie|tv)-(\d+)$/i);
+  if(!m)throw new Error('Slug tidak valid');
+  const kind=m[1].toLowerCase()==='tv'?'tv':'movie';
+  const id=m[2];
+  let j=await fetchJson(TMDB_API+'/'+kind+'/'+id+'?api_key='+TMDB_KEY+'&language=id-ID&append_to_response=credits,external_ids,videos,recommendations,similar,release_dates,content_ratings',16000);
+  if(!(j.overview||'').trim()){
+    try{
+      const j2=await fetchJson(TMDB_API+'/'+kind+'/'+id+'?api_key='+TMDB_KEY+'&language=en-US&append_to_response=credits,external_ids,videos',12000);
+      if((j2.overview||'').trim())j.overview=j2.overview;
+      if(!j.tagline&&j2.tagline)j.tagline=j2.tagline;
+    }catch(e){}
+  }
+  const title=j.title||j.name||'Tanpa Judul';
+  const releaseDate=j.release_date||j.first_air_date||null;
+  const runtime=j.runtime||(Array.isArray(j.episode_run_time)&&j.episode_run_time[0])||null;
+  const duration=runtime?(runtime+' menit'):null;
+  const director=((j.credits&&j.credits.crew)||[]).filter(function(c){return c.job==='Director';}).map(function(c){return c.name;}).slice(0,2).join(', ')||null;
+  const seasons=(kind==='tv'&&Array.isArray(j.seasons))?j.seasons.filter(function(s){return s.season_number>0;}).map(function(s){
+    return{season_number:s.season_number,episode_count:s.episode_count||0,name:s.name||('Season '+s.season_number)};
+  }):[];
+  let trailer=null;
+  try{
+    const vids=((j.videos&&j.videos.results)||[]).filter(function(v){return v.site==='YouTube'&&(v.type==='Trailer'||v.type==='Teaser');});
+    if(vids.length)trailer='https://www.youtube.com/watch?v='+vids[0].key;
+  }catch(e){}
+  const statusMap={Released:'Tayang',ReturningSeries:'On Going',Ended:'Selesai',Canceled:'Dibatalkan',InProduction:'Produksi',PostProduction:'Post-Produksi',Planned:'Direncanakan'};
+  const status=statusMap[j.status]||j.status||null;
+  // Recommendations: prefer recommendations, fallback similar
+  const recRaw=((j.recommendations&&j.recommendations.results)||[]).concat((j.similar&&j.similar.results)||[]);
+  const seenRec={};
+  
+  // Age rating / certification
+  let ageRating=null;
+  try{
+    if(kind==='movie' && j.release_dates && Array.isArray(j.release_dates.results)){
+      const us=(j.release_dates.results.find(function(x){return x.iso_3166_1==='US';})||{}).release_dates||[];
+      const idn=(j.release_dates.results.find(function(x){return x.iso_3166_1==='ID';})||{}).release_dates||[];
+      const cert=(idn.find(function(x){return x.certification;})||us.find(function(x){return x.certification;})||{}).certification;
+      if(cert)ageRating=String(cert);
+    }
+    if(kind==='tv' && j.content_ratings && Array.isArray(j.content_ratings.results)){
+      const us=j.content_ratings.results.find(function(x){return x.iso_3166_1==='US';});
+      const idn=j.content_ratings.results.find(function(x){return x.iso_3166_1==='ID';});
+      const cert=(idn&&idn.rating)||(us&&us.rating);
+      if(cert)ageRating=String(cert);
+    }
+    // normalize common codes to moviezone-like
+    if(ageRating){
+      const map={G:'SU','TV-Y':'SU','TV-G':'SU','PG':'13+','TV-PG':'13+','PG-13':'13+','TV-14':'17+','R':'17+','TV-MA':'17+','NC-17':'21+','18':'17+','21':'21+'};
+      if(map[ageRating])ageRating=map[ageRating];
+      else if(/^\d+$/.test(ageRating))ageRating=ageRating+'+';
+      else if(!/\+$/.test(ageRating) && /\d/.test(ageRating))ageRating=ageRating.replace(/[^0-9]/g,'')+'+';
+    }
+  }catch(e){}
+const recommendations=[];
+  for(let i=0;i<recRaw.length && recommendations.length<14;i++){
+    const mapped=mapTmdbItem(Object.assign({},recRaw[i],{media_type:kind==='tv'?'tv':'movie'}));
+    if(mapped&&mapped.slug&&!seenRec[mapped.slug]&&mapped.slug!==slug){
+      seenRec[mapped.slug]=1;
+      recommendations.push(mapped);
+    }
+  }
+  return{results:{
+    id:Number(id),slug:slug,title:title,
+    poster:tmdbPoster(j.poster_path,'w500')||PLACEHOLDER,
+    backdrop:tmdbPoster(j.backdrop_path,'w780')||tmdbPoster(j.poster_path,'w780')||PLACEHOLDER,
+    type:kind==='tv'?'Series':'Movie',
+    tmdbId:Number(id),imdbId:(j.external_ids&&j.external_ids.imdb_id)||null,
+    year:releaseDate?String(releaseDate).slice(0,4):null,
+    releaseDate:releaseDate,
+    duration:duration,director:director,status:status,tagline:j.tagline||null,trailer:trailer,
+    rating:typeof j.vote_average==='number'?Math.round(j.vote_average*10)/10:null,
+    overview:j.overview||'',synopsis:j.overview||'Sinopsis belum tersedia.',
+    numberOfSeasons:j.number_of_seasons||null,
+    numberOfEpisodes:j.number_of_episodes||null,
+    genres:(j.genres||[]).map(function(g){return g.name;}).filter(Boolean),
+    cast:((j.credits&&j.credits.cast)||[]).slice(0,12).map(function(c){
+      return{name:c.name,character:c.character||'',photo:tmdbPoster(c.profile_path,'w185')};
+    }),
+    seasons:seasons,
+    ageRating:ageRating,
+    recommendations:recommendations,
+    stream:{servers:[],primaryIframe:null}
+  }};
+}
+
+
+async function fetchCatalogPath(path){
+  const WORKER='https://eclipsex-catalog.aryaputra-official25.workers.dev';
+  let custom=null;
+  try{custom=localStorage.getItem('EX_CATALOG_PROXY');}catch(e){}
+  const bases=[];
+  if(custom)bases.push(String(custom).replace(/\/$/,''));
+  bases.push(WORKER);
+  // only try relative catalog on non-static hosts
+  if(typeof location!=='undefined' && location.protocol!=='file:' && !(location.hostname||'').endsWith('github.io')){
+    bases.push('');
+  }
+  let lastErr=null;
+  for(let i=0;i<bases.length;i++){
+    const base=bases[i];
+    // one primary URL form first (faster)
+    const primary=base
+      ? (base+'/?path='+encodeURIComponent(path))
+      : ('/api/catalog?path='+encodeURIComponent(path));
+    try{
+      const j=await fetchJson(primary, base?12000:3500);
+      if(j&&!j.error)return j;
+      if(j&&j.error)lastErr=new Error(j.error);
+    }catch(e){lastErr=e;}
+    // secondary forms only if primary failed
+    if(base){
+      const alts=[base+'?path='+encodeURIComponent(path)];
+      for(let a=0;a<alts.length;a++){
+        try{
+          const j=await fetchJson(alts[a],10000);
+          if(j&&!j.error)return j;
+        }catch(e){lastErr=e;}
+      }
+    }
+  }
+  throw lastErr||new Error('Katalog gagal');
+}
+
+async function fetchMoviezoneSearchAll(q){
+  q=String(q||'').trim();
+  if(!q)return{results:[]};
+  // Page 1 first (required)
+  const first=await fetchCatalogPath('/api/movies/search?q='+encodeURIComponent(q)+'&page=1');
+  let results=Array.isArray(first.results)?first.results.slice():[];
+  if(!results.length && first && Array.isArray(first.data))results=first.data.slice();
+  const totalPages=Math.min(Math.max(Number(first.total_pages)||1,1), 8); // sampai 8 halaman
+  // Parallel load remaining pages (cepat)
+  if(totalPages>1){
+    const jobs=[];
+    for(let p=2;p<=totalPages;p++){
+      jobs.push(
+        fetchCatalogPath('/api/movies/search?q='+encodeURIComponent(q)+'&page='+p)
+          .then(function(pg){return pg;})
+          .catch(function(){return null;})
+      );
+    }
+    const pages=await Promise.all(jobs);
+    pages.forEach(function(pg){
+      if(!pg)return;
+      const arr=Array.isArray(pg.results)?pg.results:(Array.isArray(pg.data)?pg.data:[]);
+      if(arr.length)results=results.concat(arr);
+    });
+  }
+  // Dedupe by slug / tmdbId
+  const seen={};
+  const out=[];
+  results.forEach(function(r){
+    if(!r||typeof r!=='object')return;
+    const slug=String(r.slug||(r.tmdbId?((r.type==='Series'||r.type==='TV'?'tv-':'movie-')+r.tmdbId):'')||r.id||'');
+    if(!slug||seen[slug])return;
+    seen[slug]=1;
+    // ensure slug field for normalizeFilm
+    if(!r.slug)r.slug=slug;
+    out.push(r);
+  });
+  return{results:out, total_results:Number(first.total_results)||out.length, total_pages:totalPages};
+}
+
+async function fetchMoviesApi(action,params){
+  params=params||{};
+  const routes={
+    upcoming:'/api/movies/upcoming',
+    latest:'/api/movies/latest?type=all',
+    'top-rated':'/api/movies/top-rated?type=movie',
+    popular:'/api/movies/popular?type=all',
+    trending:'/api/movies/trending',
+    hero:'/api/movies/hero'
+  };
+  let path=routes[action];
+  if(action==='search'){
+    // Multi-page moviezone search (sama seperti moviezone.web.id)
+    try{
+      return await fetchMoviezoneSearchAll(params.q||'');
+    }catch(e){
+      // fallback TMDB di bawah
+      path='/api/movies/search?q='+encodeURIComponent(params.q||'');
+    }
+  }
+  if(action==='detail')path='/api/movies/detail/'+encodeURIComponent(params.slug||'');
+  if(!path)throw new Error('Aksi tidak dikenal');
+
+  // Moviezone real-time via Cloudflare Worker (hardcoded)
+  const WORKER='https://eclipsex-catalog.aryaputra-official25.workers.dev';
+  const proxies=[];
+  try{
+    const custom=localStorage.getItem('EX_CATALOG_PROXY');
+    if(custom)proxies.push(String(custom).replace(/\/$/,''));
+  }catch(e){}
+  proxies.push(WORKER);
+  // Grok / self-hosted (optional)
+  if(typeof location!=='undefined' && location.protocol!=='file:' && !(location.hostname||'').endsWith('github.io')){
+    proxies.push(''); // relative /api/catalog
+  }
+
+  let lastErr=null;
+  for(let i=0;i<proxies.length;i++){
+    const base=proxies[i];
+    const urls=[];
+    if(!base){
+      urls.push('/api/catalog?path='+encodeURIComponent(path));
+    }else{
+      urls.push(base+'/?path='+encodeURIComponent(path));
+      urls.push(base+'/api/catalog?path='+encodeURIComponent(path));
+      urls.push(base+'?path='+encodeURIComponent(path));
+    }
+    for(let u=0;u<urls.length;u++){
+      try{
+        const j=await fetchJson(urls[u], base?14000:4000);
+        if(j&&!j.error&&(j.results||j.data||Array.isArray(j)||j.ok!==undefined))return j;
+        if(j&&j.error)lastErr=new Error(j.error);
+      }catch(e){lastErr=e;}
+    }
+  }
+
+  // Fallback TMDB
+  try{
+    if(action==='search')return await fetchTmdbSearch(params.q||'');
+    if(action==='detail')return await fetchTmdbDetail(params.slug||'');
+    return await fetchTmdbList(action==='hero'?'hero':action);
+  }catch(e){
+    throw lastErr||e||new Error('Gagal memuat data film');
+  }
+}
+
+// ─── Normalize ─────────────────────────────────
+function pick(r,...keys){for(const k of keys){const v=r[k];if(v!==undefined&&v!==null&&v!=='')return v;}return undefined;}
+function asStr(v){if(v===undefined||v===null||v==='')return null;return String(v);}
+function tmdbFromSlug(slug){if(!slug)return null;const m=String(slug).match(/(?:movie|tv)-(\d+)/i);return m?Number(m[1]):null;}
+
+function normalizeCast(c){
+  if(!c)return null;
+  if(typeof c==='string')return{name:c,character:'',photo:null};
+  if(typeof c!=='object')return null;
+  const name=asStr(pick(c,'name','nama'));
+  if(!name)return null;
+  let photo=asStr(pick(c,'photo','image','foto','avatar','photoUrl','photo_url','profile','profileImage'))||asStr(pick(c,'profile_path','profilePath'));
+  if(photo&&!/^(https?:)?\/\//i.test(photo)&&!photo.startsWith('data:'))photo=`${TMDB_IMG}${photo.startsWith('/')? '':'/'}${photo}`;
+  return{name,character:asStr(pick(c,'character','role','peran'))||'',photo:photo||null};
+}
+
+function normalizeFilm(raw){
+  if(!raw||typeof raw!=='object')return null;
+  const r=raw;
+  const title=asStr(pick(r,'title','judul','name','nama'))||'Tanpa Judul';
+  const poster=asStr(pick(r,'poster','image','thumbnail','img','cover'))||PLACEHOLDER;
+  const backdrop=asStr(pick(r,'backdrop','banner','background'))||poster;
+  const slug=asStr(pick(r,'slug','id','url','link','href'));
+  if(!slug)return null;
+  const stream=r.stream&&typeof r.stream==='object'?r.stream:{};
+  let serversRaw=Array.isArray(stream.servers)?stream.servers:[];
+  if(!serversRaw.length&&Array.isArray(r.servers))serversRaw=r.servers;
+  const servers=serversRaw.map((s,i)=>{
+    if(!s||typeof s!=='object')return null;
+    const url=asStr(pick(s,'url','link','embed'));
+    if(!url)return null;
+    return{name:asStr(pick(s,'server','name','label'))||`Server ${i+1}`,url};
+  }).filter(Boolean);
+  const genresRaw=Array.isArray(r.genres)?r.genres:Array.isArray(r.genre)?r.genre:[];
+  const genres=genresRaw.map(g=>String(g)).filter(Boolean);
+  const seasonsRaw=Array.isArray(r.seasons)?r.seasons:[];
+  const seasons=seasonsRaw.map(s=>{
+    if(!s||typeof s!=='object')return null;
+    const sn=Number(s.season_number??s.seasonNumber??0);
+    const ec=Number(s.episode_count??s.episodeCount??0);
+    return{seasonNumber:sn,episodeCount:Number.isFinite(ec)?ec:0,name:asStr(s.name)||`Musim ${sn}`};
+  }).filter(Boolean);
+  const detailedCast=Array.isArray(r.castDetailed)?r.castDetailed:[];
+  const plainCast=Array.isArray(r.cast)?r.cast:[];
+  const castSource=detailedCast.length?detailedCast:plainCast;
+  const tmdbId=Number(pick(r,'tmdbId','tmdb_id','id'))||tmdbFromSlug(slug);
+  const primaryIframe=asStr(stream.primaryIframe)||servers[0]?.url||null;
+  return{
+    id:(pick(r,'id'))??tmdbId,slug,tmdbId:Number.isFinite(tmdbId)?tmdbId:tmdbFromSlug(slug),
+    title,poster,backdrop,
+    rating:(pick(r,'rating','score','vote_average','nilai'))??null,
+    type:asStr(pick(r,'type','tipe','category'))||'Movie',
+    year:asStr(pick(r,'year','tahun')),
+    synopsis:asStr(pick(r,'synopsis','sinopsis','description','deskripsi','overview'))||'Sinopsis belum tersedia.',
+    ageRating:asStr(pick(r,'ageRating','age_rating','certification','contentRating','content_rating'))||null,
+    tagline:asStr(pick(r,'tagline')),duration:asStr(pick(r,'duration','durasi','runtime')),
+    releaseDate:asStr(pick(r,'releaseDate','release_date')),status:asStr(pick(r,'status')),
+    genres,director:asStr(pick(r,'director','sutradara')),
+    cast:castSource.map(normalizeCast).filter(Boolean),
+    trailer:asStr(pick(r,'trailer')),imdbId:asStr(pick(r,'imdbId','imdb_id')),
+    numberOfSeasons:(pick(r,'numberOfSeasons'))??null,
+    numberOfEpisodes:(pick(r,'numberOfEpisodes'))??null,
+    seasons,primaryIframe,servers,
+    recommendations:(Array.isArray(r.recommendations)?r.recommendations:[]).map(lightFilm).filter(Boolean)
+  };
+}
+function lightFilm(x){
+  if(!x||typeof x!=='object')return null;
+  const slug=asStr(pick(x,'slug'));
+  const title=asStr(pick(x,'title','name','judul'));
+  if(!slug||!title)return null;
+  return{
+    slug,title,
+    poster:asStr(pick(x,'poster','image'))||PLACEHOLDER,
+    backdrop:asStr(pick(x,'backdrop'))||asStr(pick(x,'poster'))||PLACEHOLDER,
+    rating:pick(x,'rating')??null,
+    type:asStr(pick(x,'type'))||'Movie',
+    year:asStr(pick(x,'year')),
+    synopsis:asStr(pick(x,'synopsis','overview'))||'',
+    releaseDate:asStr(pick(x,'releaseDate','release_date')),
+    genres:[],cast:[],servers:[],seasons:[],recommendations:[]
+  };
+}
+
+function extractList(payload){
+  if(!payload)return[];
+  const root=payload;
+  const r=root.results!==undefined?root.results:payload;
+  if(Array.isArray(r))return r.map(normalizeFilm).filter(Boolean);
+  if(r&&typeof r==='object'){
+    if(Array.isArray(r.data))return r.data.map(normalizeFilm).filter(Boolean);
+    if(Array.isArray(r.movies))return r.movies.map(normalizeFilm).filter(Boolean);
+    const one=normalizeFilm(r);return one?[one]:[];
+  }
+  return[];
+}
+
+function extractDetail(payload){
+  if(!payload||typeof payload!=='object')return null;
+  const root=payload;
+  if(root.status===false)return null;
+  const raw=root.results!==undefined?root.results:payload;
+  return normalizeFilm(raw);
+}
+
+function isSeries(film){return/series|tv/i.test(film.type)||/^tv-/i.test(film.slug);}
+function tmdbIdOf(film){if(film.tmdbId)return film.tmdbId;const m=film.slug.match(/(?:movie|tv)-(\d+)/i);return m?Number(m[1]):null;}
+
+// Server map — sama urutan sumber baru: VidSrcWiki, SuperEmbed, VidSrc, VidLink, 2Embed, VSEmbed
+const SERVER_LABELS=['EFS-01','EXM-02','EX-03','CINE-04','XSTAR-05','Nexus-06'];
+const REC_SERVER_INDEX=5;
+
+function getServers(film,season,episode){
+  const id=tmdbIdOf(film);
+  const imdb=film&&film.imdbId;
+  const s=season||1, e=episode||1;
+  if(isSeries(film)&&id){
+    return[
+      {name:'EFS-01',  url:'https://vidsrc.pm/embed/tv/'+id+'/'+s+'/'+e},
+      {name:'EXM-02',  url:'https://multiembed.mov/?video_id='+id+'&tmdb=1&s='+s+'&e='+e},
+      {name:'EX-03',   url:'https://vidsrc.to/embed/tv/'+id+'/'+s+'/'+e},
+      {name:'CINE-04', url:'https://vidlink.pro/tv/'+id+'/'+s+'/'+e},
+      {name:'XSTAR-05',url:'https://www.2embed.cc/embedtv/'+id+'&s='+s+'&e='+e},
+      {name:'Nexus-06',url:imdb
+        ?('https://vsembed.ru/embed/tv/'+imdb+'/'+s+'/'+e)
+        :('https://vidsrc.xyz/embed/tv?tmdb='+id+'&season='+s+'&episode='+e)},
+    ];
+  }
+  if(id){
+    return[
+      {name:'EFS-01',  url:'https://vidsrc.pm/embed/movie/'+id},
+      {name:'EXM-02',  url:'https://multiembed.mov/?video_id='+id+'&tmdb=1'},
+      {name:'EX-03',   url:'https://vidsrc.to/embed/movie/'+id},
+      {name:'CINE-04', url:'https://vidlink.pro/movie/'+id},
+      {name:'XSTAR-05',url:'https://www.2embed.cc/embed/'+id},
+      {name:'Nexus-06',url:imdb
+        ?('https://vsembed.ru/embed/movie/'+imdb)
+        :('https://vidsrc.xyz/embed/movie?tmdb='+id)},
+    ];
+  }
+  return (film.servers||[]).map(function(sv,i){return{name:SERVER_LABELS[i]||sv.name,url:sv.url};});
+}
+function serversForEpisode(film,season,episode){return getServers(film,season,episode);}
+
+// ============================================================
+// STATE
+// ============================================================
+let currentPage='home';
+let prevPages=[];
+let filmCache={};
+let heroFilms=[];
+let heroIdx=0;
+let heroTimer=null;
+let heroAutoResumeTimer=null;
+let heroTouchStartX=0;
+let heroTouchStartY=0;
+let rekoFilms=[];
+let rekoFilter='semua';
+let searchTimer=null;
+let currentWatchFilm=null;
+let currentSeason=1;
+let currentEpisode=1;
+let screenLocked=false;
+let landscapeOn=false;
+const filmIndex={};
+
+// ============================================================
+// SPLASH
+// ============================================================
+const MIN_SPLASH=1200;
+const MAX_SPLASH=3800;
+
+let splashDone=false,splashMin=false;
+function tryDismissSplash(){
+  if(splashMin&&splashDone){
+    document.getElementById('splash').classList.add('done');
+  }
+}
+setTimeout(()=>{splashMin=true;tryDismissSplash();},MIN_SPLASH);
+setTimeout(()=>{splashDone=true;tryDismissSplash();},MAX_SPLASH);
+
+function markSplashReady(){splashDone=true;tryDismissSplash();}
+
+// ============================================================
+// NAVIGATION — instant, no delay
+// ============================================================
+function navigate(page,pushPrev=true){
+  if(page===currentPage&&!['detail','watch'].includes(page))return;
+
+  // Leaving watch → stop background playback
+  if(currentPage==='watch' && page!=='watch'){
+    stopPlayer();
+    if(!isPwaInstalled())setInstallAfterWatchFlag();
+  }
+  
+  // store previous for back
+  if(pushPrev&&!['detail','watch'].includes(page)){
+    prevPages=[];
+  }else if(pushPrev){
+    prevPages.push(currentPage);
+  }
+
+  // hide all
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+
+  // show target
+  const target=document.getElementById('page-'+page);
+  if(target){
+    target.classList.add('active');
+    // Force reflow for animation restart
+    target.style.animation='none';
+    target.offsetHeight;
+    target.style.animation='';
+  }
+
+  currentPage=page;
+  try{saveSessionState();}catch(e){}
+  updateNavActive(page);
+  window.scrollTo({top:0,behavior:'instant'});
+
+  // side effects
+  if(page==='history')renderHistory();
+  if(page==='reko'&&!rekoFilms.length)loadReko();
+  if(page==='search')setTimeout(()=>document.getElementById('mobile-search')?.focus(),120);
+  if(page==='info'){setTimeout(updateDefaultServerUI,80);refreshLiveStatus();}
+  if(page==='search')renderRecentSearches();
+
+  // Install popup: only when returning to home AFTER finishing a watch session
+  if(page==='home' && !isPwaInstalled() && shouldShowInstallAfterWatch()){
+    clearInstallAfterWatchFlag();
+    // subtle delay so transition feels natural
+    setTimeout(()=>{ maybeShowPwaPrompt(); }, 900);
+  }
+}
+
+function goBack(){
+  if(prevPages.length){
+    const prev=prevPages.pop();
+    navigate(prev,false);
+  }else{
+    navigate('home',false);
+  }
+}
+
+function updateNavActive(page){
+  // Bottom nav
+  document.querySelectorAll('#bottom-nav .nav-pill').forEach(el=>{
+    const isActive=el.dataset.nav===page;
+    el.classList.toggle('active',isActive);
+  });
+  // Sidebar
+  document.querySelectorAll('#sidebar .sidebar-link').forEach(el=>{
+    const isActive=el.dataset.nav===page;
+    el.classList.toggle('active',isActive);
+  });
+}
+
+// ============================================================
+// TOPBAR
+// ============================================================
+let topbarTimer=null;
+function showTopbar(){
+  const tb=document.getElementById('topbar');
+  tb.classList.add('active');
+  clearTimeout(topbarTimer);
+  topbarTimer=setTimeout(()=>tb.classList.remove('active'),2000);
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+let toastTimer=null;
+function showToast(msg,ms=2500){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),ms);
+}
+
+// ============================================================
+// SCROLL TO TOP
+// ============================================================
+window.addEventListener('scroll',()=>{
+  const btn=document.getElementById('scrolltop');
+  if(btn)btn.classList.toggle('show',window.scrollY>400);
+},{passive:true});
+
+// ============================================================
+// HERO CAROUSEL (Manual swipe + auto)
+// ============================================================
+function renderHero(films){
+  heroFilms=films.slice(0,6);
+  if(!heroFilms.length){
+    document.getElementById('hero-section').innerHTML='';
+    return;
+  }
+  const html=`
+  <div class="hero" id="hero">
+    ${heroFilms.map((f,i)=>`
+    <div class="hero-slide${i===0?' active':''}" data-idx="${i}">
+      <div class="hero-bg" style="background-image:url('${esc(f.backdrop||f.poster)}')"></div>
+      <div class="hero-shade"></div>
+      <div class="hero-inner" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;">
+        <div class="hero-content">
+          <div class="hero-badge"><span class="live-dot"></span> ${esc(f._badge||'Sedang tayang di EclipseX')}</div>
+          <h1 class="hero-title">${esc(f.title)}</h1>
+          <div class="hero-meta">
+            ${f.rating?`<span><svg viewBox="0 0 24 24" fill="currentColor" style="color:var(--accent)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>${esc(String(f.rating))}</span>`:''}
+            ${f.year?`<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${esc(f.year)}</span>`:''}
+            ${f.type?`<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/></svg>${esc(f.type)}</span>`:''}
+          </div>
+          ${f.synopsis&&f.synopsis!=='Sinopsis belum tersedia.'?`<p class="hero-synopsis">${esc(truncate(f.synopsis,160))}</p>`:''}
+          <div class="hero-actions">
+            <button class="btn-watch" onclick="openWatch('${esc(f.slug)}')">
+              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>Tonton Sekarang
+            </button>
+            <button class="btn-info" onclick="openDetail('${esc(f.slug)}')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>Info
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>`).join('')}
+    <div class="hero-dots">
+      ${heroFilms.map((_,i)=>`<button class="hero-dot${i===0?' active':''}" onclick="goHeroSlide(${i})" aria-label="Slide ${i+1}"></button>`).join('')}
+    </div>
+    <button class="hero-prev" onclick="prevHeroSlide()" aria-label="Sebelumnya">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <button class="hero-next" onclick="nextHeroSlide()" aria-label="Berikutnya">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </div>`;
+  document.getElementById('hero-section').innerHTML=html;
+
+  // Touch events for manual swipe
+  const hero=document.getElementById('hero');
+  let touchStartX=0,touchStartY=0,isDragging=false;
+  
+  hero.addEventListener('touchstart',e=>{
+    touchStartX=e.touches[0].clientX;
+    touchStartY=e.touches[0].clientY;
+    isDragging=false;
+    stopHeroAuto();
+  },{passive:true});
+  
+  hero.addEventListener('touchmove',e=>{
+    const dx=e.touches[0].clientX-touchStartX;
+    const dy=e.touches[0].clientY-touchStartY;
+    if(!isDragging&&Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>8){
+      isDragging=true;
+    }
+  },{passive:true});
+  
+  hero.addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-touchStartX;
+    const dy=e.changedTouches[0].clientY-touchStartY;
+    if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>45){
+      if(dx<0)nextHeroSlide();
+      else prevHeroSlide();
+    }
+    pauseHeroThenResume();
+  },{passive:true});
+
+  // Mouse drag for desktop
+  let mouseDown=false,mouseStartX=0;
+  hero.addEventListener('mousedown',e=>{if(e.target.closest('button'))return;mouseDown=true;mouseStartX=e.clientX;stopHeroAuto();});
+  hero.addEventListener('mouseup',e=>{
+    if(mouseDown){
+      const dx=e.clientX-mouseStartX;
+      if(Math.abs(dx)>50){dx<0?nextHeroSlide():prevHeroSlide();}
+    }
+    mouseDown=false;
+    pauseHeroThenResume();
+  });
+  hero.addEventListener('mouseleave',()=>{
+    if(mouseDown){mouseDown=false;pauseHeroThenResume();}
+  });
+
+  startHeroAuto();
+}
+
+function updateHeroUI(){
+  document.querySelectorAll('.hero-slide').forEach((el,i)=>{
+    el.classList.toggle('active',i===heroIdx);
+  });
+  document.querySelectorAll('.hero-dot').forEach((el,i)=>{
+    el.classList.toggle('active',i===heroIdx);
+  });
+}
+
+function goHeroSlide(idx){
+  heroIdx=idx;
+  updateHeroUI();
+  pauseHeroThenResume();
+}
+
+function nextHeroSlide(){
+  heroIdx=(heroIdx+1)%heroFilms.length;
+  updateHeroUI();
+  pauseHeroThenResume();
+}
+
+function prevHeroSlide(){
+  heroIdx=(heroIdx-1+heroFilms.length)%heroFilms.length;
+  updateHeroUI();
+  pauseHeroThenResume();
+}
+
+function startHeroAuto(){
+  stopHeroAuto();
+  if(heroFilms.length<2)return;
+  heroTimer=setInterval(()=>{
+    heroIdx=(heroIdx+1)%heroFilms.length;
+    updateHeroUI();
+  },ROTATE_MS);
+}
+
+function stopHeroAuto(){
+  if(heroTimer){clearInterval(heroTimer);heroTimer=null;}
+}
+function resetHeroAuto(){stopHeroAuto();startHeroAuto();}
+function pauseHeroThenResume(){
+  stopHeroAuto();
+  clearTimeout(heroAutoResumeTimer);
+  heroAutoResumeTimer=setTimeout(()=>startHeroAuto(),6000);
+}
+
+// ============================================================
+// POSTER CARD HTML
+// ============================================================
+function posterCardHTML(f,size='row',opts){
+  if(f&&f.slug)filmIndex[f.slug]=f;
+  const remind=opts&&opts.remind?`<button type="button" class="remind-btn${isReminded(f.slug)?' on':''}" data-slug="${esc(f.slug)}" onclick="event.stopPropagation();toggleRemind('${esc(f.slug)}')">${isReminded(f.slug)?'Diingatkan':'Ingatkan Saya'}</button>`:'';
+  return`<div class="poster-card ${size==='grid'?'grid':''}" onclick="openDetail('${esc(f.slug)}')">
+    <div class="poster-img-wrap">
+      <img class="poster-img" src="${esc(f.poster||PLACEHOLDER)}" alt="${esc(f.title)}" loading="lazy" onerror="this.src='${PLACEHOLDER}'" draggable="false"/>
+      ${f.rating?`<div class="poster-rating"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>${esc(String(f.rating))}</div>`:''}
+      <div class="poster-overlay"><div class="poster-play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
+    </div>
+    <div class="poster-title">${esc(f.title)}</div>
+    <div class="poster-meta">${esc(f.type||'')}${f.year?` · ${esc(f.year)}`:''}</div>
+    ${remind}
+  </div>`;
+}
+
+function renderRow(id,films,opts){
+  const el=document.getElementById(id);
+  if(!el)return;
+  if(!films.length){
+    el.innerHTML='<div class="empty-state"><svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 8 6 4-6 4Z"/></svg><div class="empty-title">Belum ada data</div></div>';
+    return;
+  }
+  films.forEach(f=>{if(f&&f.slug)filmIndex[f.slug]=f;});
+  el.innerHTML=films.map(f=>posterCardHTML(f,'row',opts)).join('');
+}
+
+// ============================================================
+// DATA LOADING
+// ============================================================
+function indoScore(f){
+  const blob=((f.title||'')+' '+(f.synopsis||'')).toLowerCase();
+  let n=0;
+  if(/\b(yang|dan|untuk|dengan|sebuah|seorang|adalah|karena|tetapi|namun|cerita|desa|cinta|keluarga|rumah|hantu|arwah|dendam|bapak|ibu)\b/.test(blob))n+=3;
+  if(/\b(dilan|bapak|dendam|laut|siti|pirunduk|lingsir|wengi|aplikasi|iblis|kisah|perempuan|suami|istri|kampus)\b/.test(blob))n+=2;
+  return n;
+}
+async function loadHomeData(){
+  showTopbar();
+  try{
+    const listActions=['upcoming','latest','top-rated','popular','trending'];
+    const results=await Promise.allSettled(listActions.map(function(a){return fetchMoviesApi(a);}));
+    const lists=results.map(function(r){return r.status==='fulfilled'?extractList(r.value):[];});
+    const rowIds=['row-upcoming','row-latest','row-top','row-popular'];
+    rowIds.forEach(function(id,i){renderRow(id,lists[i]||[],id==='row-upcoming'?{remind:true}:null);});
+    const upcoming=(lists[0]||[]).map(function(f){return Object.assign({},f,{_badge:'Segera Tayang',_lane:0});});
+    const latest=(lists[1]||[]).map(function(f){return Object.assign({},f,{_badge:'Sedang Tayang',_lane:1});});
+    const trending=(lists[4]||[]).map(function(f){return Object.assign({},f,{_badge:'Sedang tayang di EclipseX',_lane:2});});
+    const seen=new Set();
+    const pool=[];
+    [upcoming,latest,trending].forEach(function(arr){
+      arr.forEach(function(f){
+        if(!f||!f.slug||seen.has(f.slug))return;
+        if(!f.backdrop)return;
+        seen.add(f.slug);
+        pool.push(f);
+      });
+    });
+    pool.sort(function(a,b){
+      const d=indoScore(b)-indoScore(a);
+      if(d)return d;
+      if(a._lane!==b._lane)return a._lane-b._lane;
+      return (parseFloat(b.rating)||0)-(parseFloat(a.rating)||0);
+    });
+    let picks=pool.slice(0,6);
+    if(!picks.length){
+      (lists[3]||[]).concat(upcoming).concat(latest).forEach(function(f){
+        if(picks.length>=5)return;
+        if(f&&f.slug&&!seen.has(f.slug)){seen.add(f.slug);picks.push(f);}
+      });
+    }
+    renderHero(picks);
+    if(!picks.length&&!lists.some(function(l){return l&&l.length;})){
+      showToast('Gagal memuat katalog · coba refresh halaman');
+    }
+  }catch(err){
+    console.error('[EclipseX] loadHomeData',err);
+    showToast('Gagal memuat data');
+  }
+  markSplashReady();
+  checkReminders();
+}
+
+async function loadReko(){
+  try{
+    const j=await fetchMoviesApi('popular');
+    rekoFilms=extractList(j);
+    renderRekoGrid();
+  }catch(e){
+    document.getElementById('reko-grid').innerHTML='<div class="empty-state"><div class="empty-title">Gagal memuat</div></div>';
+  }
+}
+
+function filterReko(type,btn){
+  rekoFilter=type;
+  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  renderRekoGrid();
+}
+
+function renderRekoGrid(){
+  const grid=document.getElementById('reko-grid');
+  let films=rekoFilms;
+  if(rekoFilter!=='semua'){
+    films=rekoFilms.filter(f=>{
+      if(rekoFilter==='movie')return!/series|tv/i.test(f.type)&&!/^tv-/i.test(f.slug);
+      if(rekoFilter==='series')return/series|tv/i.test(f.type)||/^tv-/i.test(f.slug);
+      const map={action:['action','aksi'],drama:['drama'],comedy:['comedy','komedi','komedi']};
+      const keys=map[rekoFilter]||[rekoFilter];
+      return (f.genres||[]).some(g=>keys.some(k=>String(g).toLowerCase().includes(k)))||keys.some(k=>String(f.type||'').toLowerCase().includes(k));
+    });
+  }
+  if(!films.length){
+    grid.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="empty-title">Tidak ditemukan</div></div>';
+    return;
+  }
+  grid.innerHTML=films.map(f=>posterCardHTML(f,'grid')).join('');
+}
+
+// ============================================================
+// SEARCH
+// ============================================================
+let searchQuery='';
+function onHeaderSearchInput(val){
+  searchQuery=val;
+  syncSearchInputs(val,'header');
+  if(val.trim()&&currentPage!=='search')navigate('search');
+  scheduleSearch(val);
+}
+function onMobileSearchInput(val){
+  searchQuery=val;
+  syncSearchInputs(val,'mobile');
+  scheduleSearch(val);
+  navigate('search');
+}
+function syncSearchInputs(val,from){
+  if(from!=='header'){const h=document.getElementById('header-search');if(h)h.value=val;}
+  if(from!=='mobile'){const m=document.getElementById('mobile-search');if(m)m.value=val;}
+}
+function doSearch(e){if(e)e.preventDefault();scheduleSearch(searchQuery,true);}
+
+function scheduleSearch(q,immediate){
+  immediate=!!immediate;
+  clearTimeout(searchTimer);
+  renderRecentSearches(q);
+  if(!String(q||'').trim()){
+    const el=document.getElementById('search-results');
+    if(el)el.innerHTML='<div class="empty-state"><svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><div class="empty-title">Cari Film</div><div class="empty-sub">Ketik judul film atau series yang ingin kamu temukan.</div></div>';
+    return;
+  }
+  searchTimer=setTimeout(function(){runSearch(q);},immediate?0:1200);
+}
+
+async function runSearch(q){
+  const el=document.getElementById('search-results');
+  el.innerHTML='<div class="row-scroll">'+Array(6).fill('<div class="skel-card skeleton"></div>').join('')+'</div>';
+  showTopbar();
+  try{
+    const j=await fetchMoviesApi('search',{q:q.trim()});
+    const films=extractList(j);
+    if(!films.length){
+      el.innerHTML='<div class="empty-state"><div class="empty-title">Tidak ditemukan</div><div class="empty-sub">Tidak ada film yang cocok dengan "'+esc(q)+'".</div></div>';
+    }else{
+      pushRecentSearch(q);
+      el.innerHTML='<div class="film-grid">'+films.map(f=>posterCardHTML(f,'grid')).join('')+'</div>';
+    }
+  }catch(err){
+    el.innerHTML='<div class="empty-state"><div class="empty-title">Gagal mencari</div><div class="empty-sub">Coba lagi beberapa saat.</div><button class="retry-btn" onclick="runSearch(\''+esc(q)+'\')">Coba Lagi</button></div>';
+  }
+}
+
+// ============================================================
+// DETAIL PAGE
+// ============================================================
+async function openDetail(slug){
+  prevPages.push(currentPage);
+  navigate('detail',false);
+  document.getElementById('detail-content').innerHTML='<div style="padding:60px 20px;text-align:center;"><div class="skel-hero skeleton" style="max-width:100%;"></div></div>';
+  showTopbar();
+  let film=filmCache[slug];
+  // Always fetch full detail (sinopsis, cast, rekomendasi) if missing/incomplete
+  const needFull=!film||!(film.recommendations&&film.recommendations.length)||!(film.synopsis&&film.synopsis.length>20)||!(film.cast&&film.cast.length);
+  if(needFull){
+    try{
+      const j=await fetchMoviesApi('detail',{slug});
+      const full=extractDetail(j);
+      if(full){
+        film=Object.assign({},film||{},full);
+        // ensure recommendations array
+        if(!film.recommendations)film.recommendations=[];
+        filmCache[slug]=film;
+      }else if(!film){
+        film={slug:slug,title:slug,poster:PLACEHOLDER,backdrop:PLACEHOLDER,synopsis:'',type:'Movie',genres:[],cast:[],servers:[],seasons:[],recommendations:[],rating:null,year:null,duration:null,director:null,trailer:null,primaryIframe:null};
+      }
+    }catch(e){
+      if(!film){
+        document.getElementById('detail-content').innerHTML='<div class="empty-state"><div class="empty-title">Gagal memuat</div><button class="retry-btn" onclick="openDetail(\''+esc(slug)+'\')">Coba Lagi</button></div>';
+        return;
+      }
+    }
+  }
+  if(!film.recommendations)film.recommendations=[];
+  addHistory(film);
+  renderDetail(film);
+}
+
+function renderDetail(f){
+  if(f&&f.slug)filmIndex[f.slug]=f;
+  const isSer=isSeries(f);
+  const el=document.getElementById('detail-content');
+  const statusLine = [
+    f.director ? `Sutradara: <strong style="color:var(--fg)">${esc(f.director)}</strong>` : '',
+    f.releaseDate ? `Rilis: <strong style="color:var(--fg)">${esc(f.releaseDate)}</strong>` : (f.year ? `Tahun: <strong style="color:var(--fg)">${esc(f.year)}</strong>` : ''),
+    f.status ? `Status: <strong style="color:var(--fg)">${esc(f.status)}</strong>` : ''
+  ].filter(Boolean).join(' · ');
+  el.innerHTML=`
+  <div class="detail-hero">
+    <div class="detail-hero-bg" style="background-image:url('${esc(f.backdrop||f.poster)}')"></div>
+    <div class="detail-hero-shade"></div>
+  </div>
+  <div class="detail-main">
+    <div class="detail-top">
+      <div class="detail-poster">
+        <img src="${esc(f.poster||PLACEHOLDER)}" alt="${esc(f.title)}" onerror="this.src='${PLACEHOLDER}'" loading="lazy"/>
+      </div>
+      <div class="detail-info">
+        <h1 class="detail-title">${esc(f.title)}</h1>
+        <div class="detail-meta">
+          ${f.rating?`<span><svg viewBox="0 0 24 24" fill="currentColor" style="color:var(--accent)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>${esc(String(f.rating))}</span>`:''}
+          ${f.year?`<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${esc(f.year)}</span>`:''}
+          ${f.duration?`<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${esc(f.duration)}</span>`:''}
+          <span style="background:var(--surface);padding:2px 8px;border-radius:4px;border:1px solid var(--border);font-size:11px;">${esc(f.type)}</span>
+          ${f.ageRating?`<span class="age-badge" title="Batas usia">${esc(f.ageRating)}</span>`:''}
+        </div>
+        ${f.genres.length?`<div class="detail-genres">${f.genres.slice(0,5).map(g=>`<span class="genre-tag">${esc(g)}</span>`).join('')}</div>`:''}
+      </div>
+    </div>
+    <div class="detail-actions">
+      <button class="btn-watch" onclick="openWatch('${esc(f.slug)}')">
+        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>Tonton Sekarang
+      </button>
+      <button class="btn-info" onclick="shareFilm('${esc(f.slug)}')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>Bagikan
+      </button>
+      ${f.trailer?`<button class="btn-info" onclick="openTrailer('${esc(f.trailer)}')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>Trailer
+      </button>`:''}
+      <button class="btn-info" onclick="goBack()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>Kembali
+      </button>
+      ${isUpcomingFilm(f)?`<button type="button" class="remind-btn detail${isReminded(f.slug)?' on':''}" data-slug="${esc(f.slug)}" onclick="toggleRemind('${esc(f.slug)}')">${isReminded(f.slug)?'Diingatkan':'Ingatkan Saya'}</button>`:''}
+    </div>
+    ${statusLine?`<p style="font-size:12.5px;color:var(--muted);margin-top:14px;line-height:1.6;">${statusLine}</p>`:''}
+    ${f.synopsis?`
+    <h3 style="font-family:var(--font-display);font-size:18px;margin-top:22px;margin-bottom:10px;letter-spacing:.03em;display:flex;align-items:center;gap:8px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Sinopsis
+    </h3>
+    <p class="detail-synopsis" style="margin-top:0;">${esc(f.synopsis)}</p>`:''}
+    ${f.cast.length?`
+    <h3 style="font-family:var(--font-display);font-size:18px;margin-top:24px;margin-bottom:12px;letter-spacing:.03em;display:flex;align-items:center;gap:8px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Pemeran
+    </h3>
+    <div class="cast-scroll">
+      ${f.cast.slice(0,15).map(c=>`<div class="cast-card">
+        <div class="cast-avatar"><img src="${esc(c.photo||PLACEHOLDER_AV)}" alt="${esc(c.name)}" loading="lazy" onerror="this.src='${PLACEHOLDER_AV}'"/></div>
+        <div class="cast-name">${esc(c.name)}</div>
+        ${c.character?`<div class="cast-char">${esc(c.character)}</div>`:''}
+      </div>`).join('')}
+    </div>`:''}
+    ${(f.recommendations||[]).length?`
+    <h3 style="font-family:var(--font-display);font-size:18px;margin-top:26px;margin-bottom:12px;letter-spacing:.03em;display:flex;align-items:center;gap:8px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      Mungkin Kamu Suka
+    </h3>
+    <div class="row-scroll">${f.recommendations.slice(0,12).map(r=>posterCardHTML(r,'row')).join('')}</div>`:''}
+  </div>`;
+}
+
+// ============================================================
+// WATCH PAGE
+// ============================================================
+async function openWatch(slug){
+  prevPages.push(currentPage);
+  navigate('watch',false);
+  document.getElementById('watch-content').innerHTML=`<div style="padding:80px 20px;text-align:center;color:var(--muted);font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;">MEMUAT FILM...</div>`;
+  showTopbar();
+  let film=filmCache[slug];
+  if(!film){
+    try{
+      const j=await fetchMoviesApi('detail',{slug});
+      film=extractDetail(j)||null;
+      if(film)filmCache[slug]=film;
+    }catch(e){}
+  }
+  if(!film){
+    document.getElementById('watch-content').innerHTML='<div class="empty-state"><div class="empty-title">Film tidak ditemukan</div><button class="retry-btn" onclick="openWatch(\''+esc(slug)+'\')">Coba Lagi</button></div>';
+    return;
+  }
+  addHistory(film);
+  markWatchedFilm(); // mark so install popup can appear later on home
+  currentWatchFilm=film;
+  currentSeason=1;currentEpisode=1;
+  screenLocked=false;landscapeOn=false;
+  renderWatch(film);
+}
+
+function buildServerTabs(servers,activeIdx){
+  return servers.map((s,i)=>`<button class="server-tab${i===activeIdx?' active':''}" onclick="switchServer('${esc(s.url)}',this)">${esc(s.name)}${i===REC_SERVER_INDEX?'<span class="rec-badge">REC</span>':''}</button>`).join('');
+}
+
+function renderWatch(f){
+  const isSer=isSeries(f);
+  const el=document.getElementById('watch-content');
+  const servers=getServers(f,currentSeason,currentEpisode);
+  const defIdx=Math.min(defaultServerIdx,servers.length-1);
+  const activeUrl=servers[defIdx]?.url||'';
+  el.innerHTML=`
+  <div class="page-pad">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;margin-top:8px;">
+      <button class="btn-info" style="padding:9px 14px;flex-shrink:0;" onclick="goBack()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>Kembali
+      </button>
+      <h1 style="font-family:var(--font-display);font-size:clamp(1rem,4vw,1.5rem);font-weight:700;letter-spacing:-.01em;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${esc(f.title)}</h1>
+    </div>
+    <div class="player-wrap" id="player-wrap">
+      ${activeUrl
+        ?`<iframe id="player-iframe" src="${esc(activeUrl)}" allowfullscreen allow="autoplay; fullscreen; picture-in-picture; encrypted-media" referrerpolicy="no-referrer" loading="eager"></iframe>`
+        :`<div class="player-msg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg><span>Server tidak tersedia saat ini.</span></div>`}
+    </div>
+    <div class="player-tools">
+      <button type="button" class="player-tool" id="btn-lock" onclick="toggleScreenLock()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+        Kunci Layar
+      </button>
+      <button type="button" class="player-tool" id="btn-orient" onclick="toggleHorizontal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M8 12h8"/></svg>
+        Horizontal
+      </button>
+    </div>
+    <div style="margin-top:18px;">
+      <p style="font-family:var(--font-mono);font-size:10px;color:var(--subtle);margin-bottom:10px;letter-spacing:.1em;text-transform:uppercase;">Pilih Server</p>
+      <div class="server-tabs" id="server-tabs">${buildServerTabs(servers,defIdx)}</div>
+    </div>
+    ${isSer&&f.seasons.length?`
+    <div class="season-ep-wrap">
+      <p style="font-family:var(--font-mono);font-size:10px;color:var(--subtle);margin-bottom:10px;letter-spacing:.1em;text-transform:uppercase;">Musim &amp; Episode</p>
+      <select class="select-styled" id="season-select" onchange="onSeasonChange(this.value)">
+        ${f.seasons.map(s=>`<option value="${s.seasonNumber}">${esc(s.name)}</option>`).join('')}
+      </select>
+      <div class="ep-grid" id="ep-grid">${renderEpButtons(f,currentSeason)}</div>
+    </div>`:''}
+    <div style="margin-top:20px;padding:13px 16px;border-radius:var(--radius-md);background:rgba(226,75,58,.06);border:1px solid rgba(226,75,58,.2);">
+      <p style="font-size:12px;color:var(--muted);line-height:1.7;">Jika video tidak muncul, coba server lain. Default <strong style="color:var(--fg);">EFS-01</strong>. <strong style="color:var(--fg);">Nexus-06</strong> cadangan jika putar macet. Iklan dari provider bersifat normal pada layanan gratis.</p>
+    </div>
+  </div>`;
+}
+
+function renderEpButtons(f,season){
+  const s=f.seasons.find(s=>s.seasonNumber===season);
+  const count=s?s.episodeCount:12;
+  return Array.from({length:count||12},(_,i)=>i+1)
+    .map(ep=>`<button class="ep-btn${ep===currentEpisode?' active':''}" onclick="switchEpisode(${ep},this)">${ep}</button>`)
+    .join('');
+}
+
+function onSeasonChange(val){
+  currentSeason=Number(val);currentEpisode=1;
+  if(!currentWatchFilm)return;
+  document.getElementById('ep-grid').innerHTML=renderEpButtons(currentWatchFilm,currentSeason);
+  const servers=getServers(currentWatchFilm,currentSeason,currentEpisode);
+  const defIdx=Math.min(defaultServerIdx,servers.length-1);
+  loadPlayer(servers[defIdx]?.url||'');
+  const tabs=document.getElementById('server-tabs');
+  if(tabs)tabs.innerHTML=buildServerTabs(servers,defIdx);
+}
+
+function switchEpisode(ep,btn){
+  currentEpisode=ep;
+  document.querySelectorAll('.ep-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(!currentWatchFilm)return;
+  const servers=getServers(currentWatchFilm,currentSeason,currentEpisode);
+  const defIdx=Math.min(defaultServerIdx,servers.length-1);
+  loadPlayer(servers[defIdx]?.url||'');
+  const tabs=document.getElementById('server-tabs');
+  if(tabs)tabs.innerHTML=buildServerTabs(servers,defIdx);
+}
+
+function switchServer(url,btn){
+  document.querySelectorAll('.server-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  loadPlayer(url);
+}
+
+function stopPlayer(){
+  try{
+    const wrap=document.getElementById('player-wrap');
+    if(wrap){
+      const ifr=wrap.querySelector('iframe');
+      if(ifr){ifr.src='about:blank';ifr.remove();}
+      wrap.innerHTML='';
+    }
+    const trail=document.getElementById('trailer-player');
+    if(trail)trail.innerHTML='';
+    // also clear any watch-content iframe leftovers
+    document.querySelectorAll('#player-iframe').forEach(function(el){
+      try{el.src='about:blank';}catch(e){}
+      el.remove();
+    });
+  }catch(e){}
+  screenLocked=false;
+  landscapeOn=false;
+}
+function loadPlayer(url){
+  const wrap=document.getElementById('player-wrap');if(!wrap)return;
+  if(!url){wrap.innerHTML='<div class="player-msg"><span>Server tidak tersedia.</span></div>';applyPlayerChrome(wrap);return;}
+  wrap.innerHTML=`<iframe id="player-iframe" src="${esc(url)}" allowfullscreen allow="autoplay; fullscreen; picture-in-picture; encrypted-media" referrerpolicy="no-referrer" loading="eager"></iframe>`;
+  applyPlayerChrome(wrap);
+}
+let lockChipTimer=null;
+function applyPlayerChrome(wrap){
+  if(!wrap)return;
+  wrap.classList.toggle('is-locked',screenLocked);
+  if(screenLocked&&!wrap.querySelector('#player-shield')){
+    const shield=document.createElement('div');
+    shield.id='player-shield';
+    shield.className='player-shield';
+    shield.innerHTML='<div class="shield-chip" id="shield-chip-text">Layar terkunci</div>';
+    wrap.appendChild(shield);
+    if(lockChipTimer)clearTimeout(lockChipTimer);
+    lockChipTimer=setTimeout(function(){
+      const chip=document.getElementById('shield-chip-text');
+      if(chip)chip.classList.add('fade-out');
+    },8000);
+  }
+  if(!screenLocked){
+    if(lockChipTimer){clearTimeout(lockChipTimer);lockChipTimer=null;}
+  }
+  const lockBtn=document.getElementById('btn-lock');
+  const oriBtn=document.getElementById('btn-orient');
+  if(lockBtn)lockBtn.classList.toggle('on',screenLocked);
+  if(oriBtn)oriBtn.classList.toggle('on',landscapeOn);
+}
+function toggleScreenLock(){
+  screenLocked=!screenLocked;
+  const wrap=document.getElementById('player-wrap');
+  if(wrap){
+    const old=wrap.querySelector('#player-shield');
+    if(old)old.remove();
+    applyPlayerChrome(wrap);
+  }
+  showToast(screenLocked?'Layar pemutar dikunci':'Kunci layar dibuka');
+}
+async function toggleHorizontal(){
+  const wrap=document.getElementById('player-wrap');
+  if(!wrap)return;
+  landscapeOn=!landscapeOn;
+  if(landscapeOn){
+    try{
+      if(wrap.requestFullscreen)await wrap.requestFullscreen();
+      else if(wrap.webkitRequestFullscreen)wrap.webkitRequestFullscreen();
+    }catch(e){}
+    try{ if(screen.orientation&&screen.orientation.lock)await screen.orientation.lock('landscape'); }catch(e){}
+    showToast('Mode horizontal');
+  }else{
+    try{ if(document.fullscreenElement&&document.exitFullscreen)await document.exitFullscreen(); }catch(e){}
+    try{ if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock(); }catch(e){}
+  }
+  applyPlayerChrome(wrap);
+}
+document.addEventListener('fullscreenchange',()=>{
+  if(!document.fullscreenElement&&landscapeOn){
+    landscapeOn=false;
+    applyPlayerChrome(document.getElementById('player-wrap'));
+  }
+});
+
+// ============================================================
+// TRAILER MODAL
+// ============================================================
+function openTrailer(url){
+  const ytId=url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/)?.[1]||url;
+  document.getElementById('trailer-player').innerHTML=`<iframe src="https://www.youtube.com/embed/${ytId}?autoplay=1" allowfullscreen allow="autoplay; fullscreen"></iframe>`;
+  document.getElementById('trailer-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeTrailerBtn(){
+  document.getElementById('trailer-modal').classList.remove('open');
+  document.getElementById('trailer-player').innerHTML='';
+  document.body.style.overflow='';
+}
+function closeTrailer(e){if(e.target===document.getElementById('trailer-modal'))closeTrailerBtn();}
+
+// ============================================================
+// HISTORY
+// ============================================================
+const HIST_KEY='eclipsex_history';
+function getHistory(){try{return JSON.parse(localStorage.getItem(HIST_KEY)||'[]');}catch{return[];}}
+function saveHistory(arr){try{localStorage.setItem(HIST_KEY,JSON.stringify(arr));}catch{}}
+function addHistory(film){
+  let arr=getHistory();
+  arr=arr.filter(f=>f.slug!==film.slug);
+  arr.unshift({slug:film.slug,title:film.title,poster:film.poster,type:film.type,year:film.year,ts:Date.now()});
+  saveHistory(arr.slice(0,50));
+}
+function renderHistory(){
+  const el=document.getElementById('history-list');
+  const btn=document.getElementById('clear-history-btn');
+  const arr=getHistory();
+  if(!arr.length){
+    el.innerHTML='<div class="empty-state"><svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg><div class="empty-title">Riwayat kosong</div><div class="empty-sub">Film yang kamu buka akan muncul di sini.</div></div>';
+    if(btn)btn.style.display='none';
+    return;
+  }
+  if(btn)btn.style.display='inline-flex';
+  el.innerHTML=arr.map(f=>`<div class="history-item" onclick="openDetail('${esc(f.slug)}')"><div class="history-thumb"><img src="${esc(f.poster||PLACEHOLDER)}" alt="${esc(f.title)}" loading="lazy" onerror="this.src='${PLACEHOLDER}'"/></div><div class="history-meta"><div class="history-title">${esc(f.title)}</div><div class="history-type">${esc(f.type||'')}${f.year?` · ${esc(f.year)}`:''}</div></div></div>`).join('');
+}
+function clearHistory(){
+  if(!confirm('Hapus semua riwayat penayangan?'))return;
+  saveHistory([]);
+  renderHistory();
+  showToast('Riwayat berhasil dihapus');
+}
+
+// ============================================================
+// PWA INSTALL — real Chrome prompt, no manual steps
+// ============================================================
+let _pwaPrompt=null;
+const HAS_WATCHED_KEY='eclipsex_has_watched';
+const WELCOME_APP_KEY='eclipsex_welcome_app_shown';
+
+window.addEventListener('beforeinstallprompt',(e)=>{
+  e.preventDefault();
+  _pwaPrompt=e;
+  // Soft banner only after user has watched at least one film
+  if(!isPwaInstalled() && hasWatchedFilm()){
+    const banner=document.getElementById('pwa-banner');
+    if(banner)banner.style.display='flex';
+  }
+});
+window.addEventListener('appinstalled',()=>{
+  _pwaPrompt=null;
+  hidePwaElements();
+  showToast('EclipseX Film berhasil diinstall!');
+  // Mark so welcome popup can show on next open of installed app
+  try{localStorage.setItem(WELCOME_APP_KEY,'pending');}catch{}
+});
+
+function isPwaInstalled(){
+  return window.matchMedia('(display-mode:standalone)').matches||window.navigator.standalone===true||document.referrer.includes('android-app://');
+}
+function hasWatchedFilm(){
+  try{return localStorage.getItem(HAS_WATCHED_KEY)==='1';}catch{return false;}
+}
+function markWatchedFilm(){
+  try{localStorage.setItem(HAS_WATCHED_KEY,'1');}catch{}
+}
+// Session flag: only prompt install right after user finishes watching
+const INSTALL_AFTER_WATCH_KEY='eclipsex_install_after_watch';
+function setInstallAfterWatchFlag(){
+  try{sessionStorage.setItem(INSTALL_AFTER_WATCH_KEY,'1');}catch{}
+}
+function shouldShowInstallAfterWatch(){
+  try{return sessionStorage.getItem(INSTALL_AFTER_WATCH_KEY)==='1';}catch{return false;}
+}
+function clearInstallAfterWatchFlag(){
+  try{sessionStorage.removeItem(INSTALL_AFTER_WATCH_KEY);}catch{}
+}
+function hidePwaElements(){
+  const b=document.getElementById('pwa-banner');if(b)b.style.display='none';
+  const infoCard=document.getElementById('info-download-card');if(infoCard)infoCard.style.display='none';
+  const sheet=document.getElementById('pwa-sheet');if(sheet)sheet.style.display='none';
+  document.querySelectorAll('[data-pwa-install],.pwa-sheet-btn,.pwa-banner').forEach(function(el){
+    if(el && el.id!=='pwa-sheet') el.style.display='none';
+  });
+  try{closePwaSheet();}catch(e){}
+}
+
+
+function openPwaSheet(){
+  // Never show install prompt inside installed APK / standalone
+  if(isPwaInstalled()){return;}
+  const area=document.getElementById('pwa-btn-area');
+  if(area){
+    // reset to default button if needed
+  }
+  document.getElementById('pwa-sheet').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePwaSheet(){
+  document.getElementById('pwa-sheet').classList.remove('open');
+  document.body.style.overflow='';
+}
+async function triggerPwaInstall(){
+  if(isPwaInstalled()){closePwaSheet();return;}
+  if(_pwaPrompt){
+    _pwaPrompt.prompt();
+    const{outcome}=await _pwaPrompt.userChoice;
+    if(outcome==='accepted'){
+      _pwaPrompt=null;
+      closePwaSheet();
+      hidePwaElements();
+    }
+  }else{
+    const area=document.getElementById('pwa-btn-area');
+    if(area){
+      area.innerHTML=`
+      <div style="padding:14px;border-radius:12px;background:var(--surface);border:1px solid var(--border);margin-bottom:10px;">
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0 0 8px;">Untuk install otomatis, pastikan membuka web ini di <strong style="color:var(--fg)">Google Chrome</strong> (Android/Desktop).</p>
+        <p style="font-size:12px;color:var(--subtle);line-height:1.6;margin:0;">Jika popup install tidak muncul, buka menu Chrome (⋮) → <strong>Install app</strong> atau <strong>Tambahkan ke layar utama</strong>.</p>
+      </div>
+      <button class="pwa-sheet-btn" onclick="triggerPwaInstall()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Coba Install Lagi
+      </button>`;
+    }
+  }
+}
+
+
+function maybeShowPwaPrompt(){
+  if(isPwaInstalled()){
+    hidePwaElements();
+    return;
+  }
+  // Soft banner can appear after user has watched at least once
+  if(hasWatchedFilm()){
+    const banner=document.getElementById('pwa-banner');
+    if(banner)banner.style.display='flex';
+  }
+  // Open the full popup sheet only when triggered after watch
+  if(!isPwaInstalled()){
+    openPwaSheet();
+  }
+}
+
+// Welcome popup after install (shown once inside the installed app)
+function maybeShowWelcomeApp(){
+  if(!isPwaInstalled())return;
+  try{
+    const flag=localStorage.getItem(WELCOME_APP_KEY);
+    if(flag==='pending' || flag===null){
+      // Show custom thank-you popup
+      showWelcomeAppPopup();
+      localStorage.setItem(WELCOME_APP_KEY,'shown');
+    }
+  }catch{}
+}
+
+function showWelcomeAppPopup(){
+  // Create styled modal matching web design
+  if(document.getElementById('welcome-app-modal'))return;
+  const modal=document.createElement('div');
+  modal.id='welcome-app-modal';
+  modal.style.cssText='position:fixed;inset:0;z-index:9500;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);';
+  modal.innerHTML=`
+  <div style="background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:28px 24px;max-width:360px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);animation:.35s var(--ease-spring) both modalIn;">
+    <div style="font-size:42px;margin-bottom:12px;">🎬✨</div>
+    <h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--fg);margin-bottom:8px;">Terima kasih!</h2>
+    <p style="font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:18px;">
+      Selamat menikmati <strong style="color:var(--fg)">EclipseX Film</strong>.<br/>
+      Aplikasi streaming film & series gratis sudah siap dipakai.
+    </p>
+    <div style="display:grid;gap:8px;margin-bottom:20px;text-align:left;">
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--border);font-size:12.5px;color:var(--muted);">
+        <span style="color:var(--ember);">▶</span> 6 server: EFS-01 · EXM-02 · EX-03 · CINE-04 · XSTAR-05 · Nexus-06
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--border);font-size:12.5px;color:var(--muted);">
+        <span style="color:var(--ember);">★</span> Upcoming, Latest, Top Rated & Populer
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--border);font-size:12.5px;color:var(--muted);">
+        <span style="color:var(--ember);">♥</span> Nikmati full tanpa khawatir · Gratis selamanya
+      </div>
+    </div>
+    <button onclick="document.getElementById('welcome-app-modal').remove();document.body.style.overflow='';" style="width:100%;padding:13px;border-radius:12px;background:var(--ember);color:#fff;font-size:14px;font-weight:700;border:0;cursor:pointer;">
+      Mulai Nonton
+    </button>
+  </div>`;
+  document.body.appendChild(modal);
+  document.body.style.overflow='hidden';
+}
+
+// ============================================================
+// OFFLINE SUPPORT
+// ============================================================
+function setupOfflineHandling(){
+  window.addEventListener('online',()=>{
+    // Auto recover when connection returns
+    hideOfflineUI();
+    if(currentPage==='home'||!document.getElementById('page-home').classList.contains('active')){
+      // soft reload data
+      loadHomeData();
+    }
+    showToast('Koneksi kembali · memuat ulang data');
+  });
+  window.addEventListener('offline',()=>{
+    showOfflineUI();
+  });
+}
+
+function showOfflineUI(){
+  // Hide floating nav & sidebar actions feel
+  const nav=document.getElementById('bottom-nav');
+  if(nav)nav.style.display='none';
+  const scrolltop=document.getElementById('scrolltop');
+  if(scrolltop)scrolltop.style.display='none';
+  // Create / show offline overlay
+  let ov=document.getElementById('offline-overlay');
+  if(!ov){
+    ov=document.createElement('div');
+    ov.id='offline-overlay';
+    ov.style.cssText='position:fixed;inset:0;z-index:5000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center;';
+    ov.innerHTML=`
+      <div style="width:72px;height:72px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--subtle)" stroke-width="1.7"><path d="M1 1l22 22"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+      </div>
+      <h2 style="font-family:var(--font-display);font-size:22px;color:var(--fg);margin-bottom:10px;letter-spacing:.03em;">Tidak Ada Koneksi</h2>
+      <p style="font-size:14px;color:var(--muted);line-height:1.7;max-width:300px;margin-bottom:6px;">Hubungkan ke koneksi internet untuk menikmati film & series di EclipseX Film.</p>
+      <p style="font-size:12px;color:var(--subtle);margin-top:8px;">Aplikasi akan otomatis memuat ulang saat terhubung kembali.</p>
+    `;
+    document.body.appendChild(ov);
+  }
+  ov.style.display='flex';
+  // Keep splash hidden if already done
+  const splash=document.getElementById('splash');
+  if(splash)splash.classList.add('done');
+}
+
+function hideOfflineUI(){
+  const ov=document.getElementById('offline-overlay');
+  if(ov)ov.style.display='none';
+  const nav=document.getElementById('bottom-nav');
+  if(nav){
+    // restore only on mobile
+    if(window.innerWidth<768)nav.style.display='flex';
+  }
+  const scrolltop=document.getElementById('scrolltop');
+  if(scrolltop)scrolltop.style.display='';
+}
+
+// ============================================================
+// DEFAULT SERVER PREFERENCE
+// ============================================================
+const DEF_SERVER_KEY = 'eclipsex_def_server';
+function getDefaultServerIdx(){
+  try{ const v = localStorage.getItem(DEF_SERVER_KEY); return v!==null ? Number(v) : 0; }catch{return 0;}
+}
+function setDefaultServerIdx(idx){
+  try{ localStorage.setItem(DEF_SERVER_KEY, String(idx)); defaultServerIdx = idx; showToast('Default server diubah'); }catch{}
+}
+let defaultServerIdx = getDefaultServerIdx();
+
+function updateDefaultServerUI(){
+  const btns = document.querySelectorAll('#default-server-btns .server-tab');
+  btns.forEach((b,i)=>{
+    b.classList.toggle('active', i === defaultServerIdx);
+  });
+}
+
+
+// ============================================================
+// REMINDERS — Ingatkan saya
+// ============================================================
+const REMIND_KEY='eclipsex_reminders';
+function getReminders(){try{const a=JSON.parse(localStorage.getItem(REMIND_KEY)||'[]');return Array.isArray(a)?a:[];}catch{return[];}}
+function saveReminders(a){try{localStorage.setItem(REMIND_KEY,JSON.stringify(a.slice(0,80)));}catch{}}
+function isReminded(slug){return getReminders().some(r=>r.slug===slug);}
+function isUpcomingFilm(f){
+  if(!f)return false;
+  const today=new Date().toISOString().slice(0,10);
+  if(f.releaseDate&&f.releaseDate>today)return true;
+  const st=String(f.status||'').toLowerCase();
+  return /planned|upcoming|rumored|in production|post production/.test(st);
+}
+function paintRemindButtons(slug,on){
+  document.querySelectorAll('.remind-btn[data-slug="'+CSS.escape(slug)+'"]').forEach(b=>{
+    b.classList.toggle('on',on);
+    b.textContent=on?'Diingatkan':'Ingatkan Saya';
+  });
+}
+async function toggleRemind(slug){
+  const film=filmIndex[slug]||{slug,title:slug};
+  let list=getReminders();
+  const exists=list.some(r=>r.slug===slug);
+  if(exists){
+    list=list.filter(r=>r.slug!==slug);
+    saveReminders(list);
+    paintRemindButtons(slug,false);
+    showToast('Pengingat dihapus');
+    return;
+  }
+  if('Notification'in window&&Notification.permission==='default'){
+    try{await Notification.requestPermission();}catch(e){}
+  }
+  list.push({slug,title:film.title,poster:film.poster||null,releaseDate:film.releaseDate||null,notifiedAt:null});
+  saveReminders(list);
+  paintRemindButtons(slug,true);
+  showToast(film.releaseDate?('Akan diingatkan saat tayang · '+film.releaseDate):'Pengingat disimpan');
+}
+function checkReminders(){
+  const list=getReminders();
+  const today=new Date().toISOString().slice(0,10);
+  let changed=false;
+  for(const r of list){
+    if(r.notifiedAt||!r.releaseDate||r.releaseDate>today)continue;
+    const msg=(r.title||'Film')+' sudah tayang — yuk nonton di EclipseX.';
+    try{
+      if('Notification'in window&&Notification.permission==='granted'){
+        new Notification('EclipseX Film',{body:msg});
+      }else showToast(msg,4200);
+    }catch(e){showToast(msg,4200);}
+    r.notifiedAt=Date.now();
+    changed=true;
+  }
+  if(changed)saveReminders(list);
+}
+
+// ============================================================
+// SEARCH SPOTLIGHT
+// ============================================================
+const SEARCH_KEY='eclipsex_search_recent';
+function getRecentSearches(){try{const a=JSON.parse(localStorage.getItem(SEARCH_KEY)||'[]');return Array.isArray(a)?a:[];}catch{return[];}}
+function pushRecentSearch(q){
+  q=(q||'').trim();if(!q)return;
+  let a=getRecentSearches().filter(x=>x.toLowerCase()!==q.toLowerCase());
+  a.unshift(q);a=a.slice(0,8);
+  try{localStorage.setItem(SEARCH_KEY,JSON.stringify(a));}catch{}
+  renderRecentSearches();
+}
+function renderRecentSearches(filterQ){
+  const el=document.getElementById('search-recent');if(!el)return;
+  const a=getRecentSearches();
+  const fq=String(filterQ!==undefined?filterQ:(typeof searchQuery!=='undefined'?searchQuery:'')||'').trim().toLowerCase();
+  let filtered=a;
+  if(fq){
+    const starts=a.filter(function(x){return String(x).toLowerCase().startsWith(fq);});
+    filtered=starts.length?starts:a.filter(function(x){return String(x).toLowerCase().indexOf(fq)>=0;});
+  }
+  if(!filtered.length){el.hidden=true;el.innerHTML='';return;}
+  el.hidden=false;
+  el.innerHTML='<div class="search-recent-head"><div class="search-recent-label">Pencarian terakhir</div><button type="button" class="search-clear-btn" onclick="clearRecentSearches()">Hapus semua</button></div><div class="search-recent-row">'+
+    filtered.map(function(q){return '<button type="button" class="search-chip" data-q="'+esc(q)+'" onclick="applyRecentSearch(this.dataset.q)">'+esc(q)+'</button>';}).join('')+
+    '</div>';
+}
+function applyRecentSearch(q){
+  searchQuery=q||'';
+  syncSearchInputs(searchQuery,'recent');
+  if(currentPage!=='search')navigate('search');
+  scheduleSearch(searchQuery,true);
+}
+function clearRecentSearches(){
+  try{localStorage.removeItem(SEARCH_KEY);}catch{}
+  renderRecentSearches();
+}
+
+// ============================================================
+// LIVE STATUS
+// ============================================================
+let liveClockTimer=null;
+function startLiveClock(){
+  const tick=()=>{
+    const el=document.getElementById('st-clock');
+    if(!el)return;
+    const d=new Date();
+    el.textContent=d.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  };
+  tick();
+  if(liveClockTimer)clearInterval(liveClockTimer);
+  liveClockTimer=setInterval(tick,1000);
+}
+function connectionLabel(){
+  const online=navigator.onLine;
+  const c=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+  const kind=c&&c.effectiveType?String(c.effectiveType).toUpperCase():'';
+  if(!online)return 'Offline';
+  return kind?('Online · '+kind):'Online';
+}
+async function refreshLiveStatus(){
+  const serverTxt=document.getElementById('st-server-txt');
+  const dot=document.getElementById('st-dot');
+  const pingEl=document.getElementById('st-ping');
+  const netEl=document.getElementById('st-net');
+  const bufEl=document.getElementById('st-buffer');
+  const bitEl=document.getElementById('st-bitrate');
+  const pill=document.getElementById('live-status-pill');
+  if(netEl)netEl.textContent=connectionLabel();
+  const c=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+  const down=c&&typeof c.downlink==='number'?c.downlink:null;
+  if(bitEl)bitEl.textContent=down!=null?(down.toFixed(1)+' Mbps'):(navigator.onLine?'Stabil':'—');
+  if(!navigator.onLine){
+    if(serverTxt)serverTxt.textContent='Offline';
+    if(dot)dot.classList.add('off');
+    if(pingEl)pingEl.textContent='—';
+    if(bufEl)bufEl.textContent='0%';
+    if(pill){pill.textContent='OFFLINE';pill.style.color='var(--ember)';}
+    return;
+  }
+  const t0=performance.now();
+  try{
+    let ok=false, ms=0;
+    // Ping Cloudflare Worker (moviezone) then others
+    const WORKER='https://eclipsex-catalog.aryaputra-official25.workers.dev';
+    const pingPaths=[
+      WORKER+'/?path='+encodeURIComponent('/__ping'),
+      WORKER+'?path='+encodeURIComponent('/__ping')
+    ];
+    try{
+      const custom=localStorage.getItem('EX_CATALOG_PROXY');
+      if(custom)pingPaths.unshift(String(custom).replace(/\/$/,'')+'/?path='+encodeURIComponent('/__ping'));
+    }catch(e){}
+    const host=(typeof location!=='undefined'?location.hostname:'')||'';
+    const isStatic=!host||host.endsWith('github.io')||(typeof location!=='undefined'&&location.protocol==='file:');
+    if(!isStatic)pingPaths.push('/api/catalog?path='+encodeURIComponent('/__ping'));
+
+    // Fallback TMDB
+    if(!ok){
+      const t1=performance.now();
+      await fetchJson(TMDB_API+'/configuration?api_key='+TMDB_KEY,8000);
+      ms=Math.round(performance.now()-t1);
+      ok=true;
+    }
+    if(serverTxt)serverTxt.textContent=ok?'Online':'Gangguan';
+    if(dot)dot.classList.toggle('off',!ok);
+    if(pingEl)pingEl.textContent=ms+' ms';
+    if(bufEl)bufEl.textContent=ok?'100%':'42%';
+    if(pill){pill.textContent=ok?'LIVE':'CEK';pill.style.color=ok?'#3dd68c':'var(--ember)';}
+  }catch(e){
+    if(serverTxt)serverTxt.textContent='Gangguan';
+    if(dot)dot.classList.add('off');
+    if(pingEl)pingEl.textContent='—';
+    if(bufEl)bufEl.textContent='—';
+    if(pill){pill.textContent='CEK';pill.style.color='var(--ember)';}
+  }
+}
+
+// ============================================================
+// SHARE + DEEP LINK
+// ============================================================
+const SHARE_BASE='https://aryaexeuyf.github.io/EclipseX-FILM/';
+
+function filmShareUrl(slug,watch){
+  const u=new URL(SHARE_BASE);
+  if(watch)u.searchParams.set('w',slug);
+  else u.searchParams.set('f',slug);
+  return u.toString();
+}
+
+function shareFilm(slug){
+  const film=filmCache[slug]||filmIndex[slug]||{title:slug,slug:slug,type:'Movie',poster:PLACEHOLDER};
+  const url=filmShareUrl(slug,false);
+  const watchUrl=filmShareUrl(slug,true);
+  const title=film.title||slug;
+  const tipe=film.type||'Film';
+  const year=film.year?(' ('+film.year+')'):'';
+  const text='🎬 *'+title+'*'+year+'\n'+
+    '📺 '+tipe+' Sub Indo HD di *EclipseX Film*\n\n'+
+    '🔥 Tonton sekarang gratis:\n'+watchUrl+'\n\n'+
+    '✨ Detail film:\n'+url;
+  let sheet=document.getElementById('share-sheet');
+  if(sheet)sheet.remove();
+  sheet=document.createElement('div');
+  sheet.id='share-sheet';
+  const poster=esc(film.poster||PLACEHOLDER);
+  sheet.innerHTML=`
+    <div class="share-backdrop" onclick="closeShareSheet()"></div>
+    <div class="share-card">
+      <div class="share-handle"></div>
+      <div class="share-title">Bagikan ke teman</div>
+      <div class="share-preview">
+        <img src="${poster}" alt="" onerror="this.src='${PLACEHOLDER}'"/>
+        <div class="share-preview-meta">
+          <div class="share-preview-title">${esc(title)}</div>
+          <div class="share-preview-sub">${esc(tipe)}${year?esc(year):''} · Sub Indo HD</div>
+        </div>
+      </div>
+      <div class="share-actions">
+        <a class="share-btn wa" href="https://wa.me/?text=${encodeURIComponent(text)}" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Kirim via WhatsApp
+        </a>
+        <button class="share-btn copy" type="button" onclick="copyFilmLink('${esc(slug)}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Salin Link
+        </button>
+        <button class="share-btn copy" type="button" onclick="copyFilmLink('${esc(slug)}',true)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Link Tonton
+        </button>
+      </div>
+      <button class="share-dismiss" type="button" onclick="closeShareSheet()">Tutup</button>
+    </div>`;
+  document.body.appendChild(sheet);
+  document.body.style.overflow='hidden';
+  requestAnimationFrame(function(){sheet.classList.add('open');});
+}
+
+function closeShareSheet(){
+  const sheet=document.getElementById('share-sheet');
+  if(!sheet)return;
+  sheet.classList.remove('open');
+  document.body.style.overflow='';
+  setTimeout(function(){sheet.remove();},220);
+}
+async function copyFilmLink(slug,watch){
+  const url=filmShareUrl(slug,!!watch);
+  try{
+    await navigator.clipboard.writeText(url);
+    showToast('Link disalin ✓');
+  }catch(e){
+    // fallback
+    const ta=document.createElement('textarea');
+    ta.value=url;document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');showToast('Link disalin ✓');}catch(e2){showToast(url);}
+    ta.remove();
+  }
+  closeShareSheet();
+}
+
+function handleDeepLink(){
+  try{
+    const params=new URLSearchParams(location.search);
+    const w=params.get('w')||params.get('watch');
+    const f=params.get('f')||params.get('film')||params.get('slug');
+    // also support hash #/film/slug or #/watch/slug
+    const hash=location.hash||'';
+    const hm=hash.match(/#\/?(watch|film|detail)\/([\w-]+)/i);
+    if(w){
+      setTimeout(function(){openWatch(w);},600);
+      return true;
+    }
+    if(f){
+      setTimeout(function(){openDetail(f);},600);
+      return true;
+    }
+    if(hm){
+      const kind=hm[1].toLowerCase();
+      const slug=hm[2];
+      setTimeout(function(){
+        if(kind==='watch')openWatch(slug);
+        else openDetail(slug);
+      },600);
+      return true;
+    }
+  }catch(e){}
+  return false;
+}
+
+
+// ============================================================
+// INIT
+// ============================================================
+function init(){
+  // Offline handling first
+  setupOfflineHandling();
+  // Soft resume: if returned quickly, skip forcing home reload
+  try{
+    const st=loadSessionState();
+    if(st && st.hiddenAt && (Date.now()-st.hiddenAt) < AWAY_RELOAD_MS){
+      // stay; optional restore scroll
+      if(st.scroll) setTimeout(function(){window.scrollTo(0,st.scroll||0);},50);
+    }
+  }catch(e){}
+
+  startLiveClock();
+  renderRecentSearches();
+  checkReminders();
+  // Welcome popup if opened as installed app
+  maybeShowWelcomeApp();
+  // Install UI rules:
+  // - Never show full popup on first open
+  // - Only soft banner if user already watched before (and not installed)
+  // - Full popup only after finishing a watch session (handled in navigate)
+  if(isPwaInstalled()){
+    hidePwaElements();
+  }else{
+    const banner=document.getElementById('pwa-banner');
+    if(banner){
+      banner.style.display = hasWatchedFilm() ? 'flex' : 'none';
+    }
+  }
+  // Load home data (will be skipped / replaced if offline)
+  if(navigator.onLine!==false){
+    loadHomeData().then(function(){ handleDeepLink(); }).catch(function(){ handleDeepLink(); });
+  }else{
+    showOfflineUI();
+    handleDeepLink();
+  }
+}
+
+
+// Background playback: stop only after ~10s away (not instant)
+let _bgStopTimer=null;
+const BG_STOP_MS=10000;
+function scheduleBackgroundStop(){
+  clearTimeout(_bgStopTimer);
+  _bgStopTimer=setTimeout(function(){
+    if(document.visibilityState==='hidden'){
+      stopPlayer();
+    }
+  },BG_STOP_MS);
+}
+function cancelBackgroundStop(){
+  clearTimeout(_bgStopTimer);
+  _bgStopTimer=null;
+}
+document.addEventListener('visibilitychange',function(){
+  if(document.visibilityState==='hidden'){
+    scheduleBackgroundStop();
+  }else{
+    cancelBackgroundStop();
+  }
+});
+window.addEventListener('pagehide',function(){scheduleBackgroundStop();});
+window.addEventListener('pageshow',function(){cancelBackgroundStop();});
+
+// ============================================================
+// ANTI-RELOG — keep page if user returns within ~17s
+// ============================================================
+const SESSION_STATE_KEY='eclipsex_session_state';
+const AWAY_RELOAD_MS=18000; // 18s → clean reload allowed
+let _lastHiddenAt=0;
+
+function saveSessionState(){
+  try{
+    const st={
+      page:currentPage||'home',
+      slug:typeof currentWatchFilm!=='undefined'&&currentWatchFilm?currentWatchFilm.slug:null,
+      detailSlug:null,
+      scroll:window.scrollY||0,
+      ts:Date.now()
+    };
+    // try capture detail slug from DOM / cache
+    try{
+      const active=document.querySelector('#page-detail.active');
+      if(active && typeof currentDetailFilm!=='undefined' && currentDetailFilm) st.detailSlug=currentDetailFilm.slug;
+    }catch(e){}
+    sessionStorage.setItem(SESSION_STATE_KEY, JSON.stringify(st));
+  }catch(e){}
+}
+
+function loadSessionState(){
+  try{
+    const raw=sessionStorage.getItem(SESSION_STATE_KEY);
+    if(!raw)return null;
+    return JSON.parse(raw);
+  }catch(e){return null;}
+}
+
+function shouldSoftResume(){
+  try{
+    const st=loadSessionState();
+    if(!st||!st.ts)return false;
+    const away=Date.now()-(st.hiddenAt||st.ts);
+    // If we tracked hiddenAt on hide, use that
+    return away < AWAY_RELOAD_MS;
+  }catch(e){return false;}
+}
+
+document.addEventListener('visibilitychange',function(){
+  if(document.visibilityState==='hidden'){
+    _lastHiddenAt=Date.now();
+    try{
+      const st=loadSessionState()||{};
+      st.hiddenAt=_lastHiddenAt;
+      st.page=currentPage||'home';
+      st.scroll=window.scrollY||0;
+      st.ts=Date.now();
+      sessionStorage.setItem(SESSION_STATE_KEY, JSON.stringify(st));
+    }catch(e){}
+  }else{
+    // visible again — if away < 18s, do nothing (no reload)
+    // if away >= 18s, soft reset to home cleanly
+    try{
+      const away=_lastHiddenAt? (Date.now()-_lastHiddenAt) : 0;
+      if(away >= AWAY_RELOAD_MS && away < 600000){
+        // long away: soft clean — stop player, go home, refresh lists
+        try{stopPlayer();}catch(e){}
+        if(typeof navigate==='function')navigate('home',false);
+        if(typeof loadHomeData==='function')loadHomeData();
+        sessionStorage.removeItem(SESSION_STATE_KEY);
+      }
+    }catch(e){}
+  }
+});
+
+// Persist on navigate
+const _origNavigateRef='__ex_nav_patched';
+
+
+
+// ============================================================
+// PWA: manifest + service worker (required for install)
+// ============================================================
+function setupPwaInstallability(){
+  try{
+    // Dynamic manifest if static file missing
+    if(!document.querySelector('link[rel="manifest"][href="manifest.webmanifest"]') || true){
+      const base=location.href.split('?')[0].split('#')[0];
+      const startUrl=base;
+      const scope=base.replace(/\/[^\/]*$/, '/') || './';
+      const manifest={
+        name:'EclipseX Film',
+        short_name:'EclipseX',
+        description:'Nonton film & series Sub Indo HD gratis',
+        start_url:startUrl,
+        scope:scope,
+        display:'standalone',
+        orientation:'any',
+        background_color:'#07070a',
+        theme_color:'#07070a',
+        icons:[
+          {src:'https://raw.githubusercontent.com/aryaexeuyf/Image/main/photo_2026-09-04_00-14-27.jpg', sizes:'192x192', type:'image/jpeg', purpose:'any maskable'},
+          {src:'https://raw.githubusercontent.com/aryaexeuyf/Image/main/photo_2026-09-04_00-14-31.jpg', sizes:'512x512', type:'image/jpeg', purpose:'any maskable'}
+        ]
+      };
+      const blob=new Blob([JSON.stringify(manifest)],{type:'application/manifest+json'});
+      const url=URL.createObjectURL(blob);
+      let link=document.querySelector('link[rel="manifest"]');
+      if(!link){link=document.createElement('link');link.rel='manifest';document.head.appendChild(link);}
+      link.href=url;
+    }
+  }catch(e){console.warn('manifest',e);}
+
+  // Register service worker (same folder as page: sw.js)
+  if('serviceWorker' in navigator){
+    const swUrl=new URL('sw.js', location.href).href;
+    navigator.serviceWorker.register(swUrl).then(function(reg){
+      console.log('[PWA] SW registered', reg.scope);
+    }).catch(function(err){
+      console.warn('[PWA] SW register failed, trying inline fallback', err);
+      // Fallback: minimal SW via data URL not allowed; create from cache-only path
+    });
+  }
+}
+
+
+window.initEclipseX=init;
+if(document.getElementById('splash'))init();
+
+</script>
+</body>
+</html>
